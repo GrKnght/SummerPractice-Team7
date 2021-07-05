@@ -6,6 +6,4 @@
     android:background="#CEAFCF"
     tools:context=".fragments.AllTasksFragment">
 
-
-
 </FrameLayout>

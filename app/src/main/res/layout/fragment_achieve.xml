@@ -3,31 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B58EB2B3"
+    android:background="#CEAFCF"
     tools:context=".fragments.AchieveFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-        <ImageView
-            android:layout_centerHorizontal="true"
-            android:layout_width="162dp"
-            android:layout_height="156dp"
-            android:layout_marginTop="280dp"
-            android:background="@drawable/no_tasks_icon" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="430dp"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="У вас нет достижений..." />
-
-    </RelativeLayout>
 
 </FrameLayout>

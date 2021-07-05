@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_menu"
+    app:startDestination="@id/daylyTaskFragment">
+
+    <fragment
+        android:id="@+id/daylyTaskFragment"
+        android:name="summerpractice.team7.mymemory.DaylyTaskFragment"
+        android:label="fragment_dayly_task"
+        tools:layout="@layout/fragment_dayly_task" />
+    <fragment
+        android:id="@+id/achievementFragment"
+        android:name="summerpractice.team7.mymemory.AchievementFragment"
+        android:label="fragment_achievement"
+        tools:layout="@layout/fragment_achievement" />
+    <fragment
+        android:id="@+id/allTaskFragment"
+        android:name="summerpractice.team7.mymemory.AllTaskFragment"
+        android:label="fragment_all_task"
+        tools:layout="@layout/fragment_all_task" />
+</navigation>

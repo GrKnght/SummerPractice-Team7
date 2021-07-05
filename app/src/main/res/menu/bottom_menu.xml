@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <item
-        android:id="@+id/dayly_tasks_icon"
+        android:id="@+id/daylyTaskFragment"
         android:icon="@drawable/dayly_tasks_icon"
         android:title="Список задач"/>
 
     <item
-        android:id="@+id/achievement_icon"
+        android:id="@+id/achievementFragment"
         android:icon="@drawable/achievement_icon"
         android:title="Достижения"/>
 
     <item
-        android:id="@+id/all_tasks_icon"
+        android:id="@+id/allTaskFragment"
         android:icon="@drawable/all_tasks_icon"
         android:title="Выполненные задачи"/>
+
 </menu>

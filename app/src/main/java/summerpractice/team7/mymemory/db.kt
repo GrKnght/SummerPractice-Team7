@@ -39,6 +39,7 @@ class db {
     // val taskDao = db.tasksDao()
     // val inProgressTasks: List<Task> = taskDao.getTasksWithStatus(TaskStatus.InProgress)
     // val tasks: List<Task> = taskDao.getAll()
+    // val updatedTasks: List<Task> = taskDao.updateOutdatedStatuses()
 
     @Dao
     interface TasksDao {

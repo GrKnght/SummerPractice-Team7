@@ -48,7 +48,7 @@ class db {
         fun getMultiple(ids: IntArray): List<Task>
 
         @Query("SELECT * FROM tasks WHERE (id=:id)")
-        fun get(id: Int): List<Task>
+        fun get(id: Int): Task
 
         @Query("SELECT * FROM tasks WHERE (status=:status)")
         fun getTasksWithStatus(status: TaskStatus): List<Task>
@@ -61,6 +61,9 @@ class db {
 
         @Update
         fun update(task: Task?)
+
+        @Update
+        fun updateMultiple(vararg tasks: Task)
 
         @Query("UPDATE tasks SET status=:status WHERE (id=:id)")
         fun updateStatus(id: Int, status: TaskStatus)

@@ -1,5 +1,6 @@
 package summerpractice.team7.mymemory
 
+import android.app.Activity
 import androidx.room.*
 
 
@@ -73,5 +74,26 @@ class db {
 
         @Query("DELETE FROM tasks WHERE (id=:id)")
         fun deleteById(id: Int)
+
+        fun updateOutdatedStatuses() : List<Task> {
+            // NotStarted => InProgress by start_date
+            val updatedTasks: MutableList<Task> = ArrayList()
+            val unixTime = System.currentTimeMillis() / 1000L
+            val notStartedTasks: List<Task> = this.getTasksWithStatus(TaskStatus.NotStarted)
+            for (task in notStartedTasks) {
+                if (task.start_date !== null) {
+                    if (unixTime > task.start_date) {
+                        this.updateStatus(task.id, TaskStatus.InProgress)
+                        updatedTasks.add(this.get(task.id))
+                    }
+                }
+            }
+            /*
+            If updatedTasks array contains InProgress task, then
+            this task was NotStarted before,
+            you should add notification, that this task started
+             */
+            return updatedTasks
+        }
     }
 }

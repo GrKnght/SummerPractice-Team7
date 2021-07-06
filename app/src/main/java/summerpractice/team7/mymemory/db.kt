@@ -66,13 +66,13 @@ class db {
 
         // MySQL already has "desc" command, so i have to quote it
         @Query("UPDATE tasks SET `desc`=`:description` WHERE (id=:id)")
-        fun updateDescription(id: Int, description: String)
+        fun updateDescription(id: Int, description: String?)
 
         @Query("UPDATE tasks SET sd=`:timestamp` WHERE (id=:id)")
-        fun updateStartDate(id: Int, timestamp: Long)
+        fun updateStartDate(id: Int, timestamp: Long?)
 
         @Query("UPDATE tasks SET ed=`:timestamp` WHERE (id=:id)")
-        fun updateEndDate(id: Int, timestamp: Long)
+        fun updateEndDate(id: Int, timestamp: Long?)
 
         @Delete
         fun delete(task: Task)

@@ -53,9 +53,31 @@ class db {
         fun getTasksWithStatus(status: TaskStatus): List<Task>
 
         @Insert
-        fun addAll(vararg tasks: Task)
+        fun addMultiple(vararg tasks: Task)
+
+        @Insert
+        fun add(task: Task)
+
+        @Query("UPDATE tasks SET status=:status WHERE (id=:id)")
+        fun updateStatus(id: Int, status: TaskStatus)
+
+        @Query("UPDATE tasks SET name=`:name` WHERE (id=:id)")
+        fun updateName(id: Int, name: String)
+
+        // MySQL already has "desc" command, so i have to quote it
+        @Query("UPDATE tasks SET `desc`=`:description` WHERE (id=:id)")
+        fun updateDescription(id: Int, description: String)
+
+        @Query("UPDATE tasks SET sd=`:timestamp` WHERE (id=:id)")
+        fun updateStartDate(id: Int, timestamp: Long)
+
+        @Query("UPDATE tasks SET ed=`:timestamp` WHERE (id=:id)")
+        fun updateEndDate(id: Int, timestamp: Long)
 
         @Delete
         fun delete(task: Task)
+
+        @Query("DELETE FROM tasks WHERE (id=:id)")
+        fun deleteById(id: Int)
     }
 }

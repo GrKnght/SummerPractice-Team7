@@ -1,6 +1,5 @@
 package summerpractice.team7.mymemory
 
-import android.app.Activity
 import androidx.room.*
 
 

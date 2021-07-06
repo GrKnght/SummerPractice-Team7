@@ -1,6 +1,8 @@
 package summerpractice.team7.mymemory
 
+import android.app.Activity
 import androidx.room.*
+
 
 enum class TaskStatus {
     NotStarted,
@@ -58,21 +60,11 @@ class db {
         @Insert
         fun add(task: Task)
 
+        @Update
+        fun update(task: Task?)
+
         @Query("UPDATE tasks SET status=:status WHERE (id=:id)")
         fun updateStatus(id: Int, status: TaskStatus)
-
-        @Query("UPDATE tasks SET name=`:name` WHERE (id=:id)")
-        fun updateName(id: Int, name: String)
-
-        // MySQL already has "desc" command, so i have to quote it
-        @Query("UPDATE tasks SET `desc`=`:description` WHERE (id=:id)")
-        fun updateDescription(id: Int, description: String?)
-
-        @Query("UPDATE tasks SET sd=`:timestamp` WHERE (id=:id)")
-        fun updateStartDate(id: Int, timestamp: Long?)
-
-        @Query("UPDATE tasks SET ed=`:timestamp` WHERE (id=:id)")
-        fun updateEndDate(id: Int, timestamp: Long?)
 
         @Delete
         fun delete(task: Task)

@@ -20,10 +20,23 @@ class db {
         @ColumnInfo(name = "status") val status: TaskStatus = TaskStatus.NotStarted
     )
 
+    fun createDBInstance(activity: Activity): AppDatabase {
+        return Room.databaseBuilder(
+            activity,
+            AppDatabase::class.java, "mymemory"
+        ).build()
+    }
+
     @Database(entities = [Task::class], version = 1)
     abstract class AppDatabase : RoomDatabase() {
         abstract fun tasksDao(): TasksDao
     }
+
+    // Примеры:
+    // val db = createDBInstance(MainActivity)
+    // val taskDao = db.tasksDao()
+    // val inProgressTasks: List<Task> = taskDao.getTasksWithStatus(TaskStatus.InProgress)
+    // val tasks: List<Task> = taskDao.getAll()
 
     @Dao
     interface TasksDao {

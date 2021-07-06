@@ -79,6 +79,15 @@ class db {
             // NotStarted => InProgress by start_date
             val updatedTasks: MutableList<Task> = ArrayList()
             val unixTime = System.currentTimeMillis() / 1000L
+            val inProgressTasks: List<Task> = this.getTasksWithStatus(TaskStatus.InProgress)
+            for (task in inProgressTasks) {
+                if (task.end_date !== null) {
+                    if (unixTime > task.end_date) {
+                        this.updateStatus(task.id, TaskStatus.Failed)
+                        updatedTasks.add(this.get(task.id))
+                    }
+                }
+            }
             val notStartedTasks: List<Task> = this.getTasksWithStatus(TaskStatus.NotStarted)
             for (task in notStartedTasks) {
                 if (task.start_date !== null) {
@@ -91,7 +100,9 @@ class db {
             /*
             If updatedTasks array contains InProgress task, then
             this task was NotStarted before,
-            you should add notification, that this task started
+            you should add notification, that this task started.
+            Same for Failed task, because time ran out, notify
+            user about failed task
              */
             return updatedTasks
         }

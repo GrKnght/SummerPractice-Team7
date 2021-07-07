@@ -1,27 +1,29 @@
 package summerpractice.team7.mymemory
 
+import android.content.Context
 import android.widget.ImageView
 
-class Achievement(val name: String, private val path: String?) {
+class Achievement(val name: String, private val drawableName: String?) {
     fun setDrawable(imageView: ImageView) {
-        //val imgResId = resIdByName(this.path, "drawable")
-        if (path !== null) {
-            imageView.setImageResource(resIdByName(path))
+        if (drawableName !== null) {
+            imageView.setImageResource(resIdByName(imageView.context, this.drawableName))
         } else {
-            // If we don't have meme image yet (or deprecated this meme), put not found icon instead
-            imageView.setImageResource(resIdByName("@drawable/no_tasks_icon.png"))
+            // If we don't have Achievement icon image yet (or deprecated this meme), put not found icon instead
+            imageView.setImageResource(resIdByName(imageView.context, "no_tasks_icon"))
         }
     }
 }
 
-public val AchievementList: List<Achievement> = arrayListOf(
-    Achievement("RarePepe","@drawable/memes/RarePepe.png")
-)
-
-fun resIdByName(path: String): Int {
-    /*resIdName?.let {
-        return resources.getIdentifier(it, resType, packageName)
-    }
-    throw Resources.NotFoundException()*/
-    return 0 // Not implemented
+fun resIdByName(context: Context, drawableName: String): Int {
+    return context.resources.getIdentifier(
+        drawableName,
+        "drawable",
+        context.packageName
+    )
 }
+
+public val AchievementList: List<Achievement> = arrayListOf(
+    Achievement("RarePepe","all_tasks_icon"),
+    // Just to test not found icon
+    Achievement("Unknown", null)
+)

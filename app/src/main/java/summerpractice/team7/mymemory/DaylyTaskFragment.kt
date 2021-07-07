@@ -1,63 +1,76 @@
 package summerpractice.team7.mymemory
 
+import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import summerpractice.team7.mymemory.databinding.ActivityMainBinding
+import summerpractice.team7.mymemory.databinding.FragmentDaylyTaskBinding
+import summerpractice.team7.mymemory.databinding.TaskViewBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DaylyTaskFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DaylyTaskFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var binding: FragmentDaylyTaskBinding? = null
+    private val adapter = TaskAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dayly_task, container, false)
+        binding = FragmentDaylyTaskBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DaylyTaskFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DaylyTaskFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun init() {
+        binding?.rectangles?.layoutManager = LinearLayoutManager(requireContext()).apply {
+            orientation = RecyclerView.VERTICAL
+        }
+        binding?.rectangles?.adapter = adapter
+        val addingTask = binding?.addingTask
+        addingTask?.setOnClickListener {
+            adapter.addTask(
+                Task(
+                    1, "Пока ничего", "Пока тоже ничего",
+                    10101010, 202020022, 12
+                )
+            )
+        }
+    }
+
+    private fun setupNoTasksNotifications() {
+        if (arrayListOf(binding?.rectangles).size == 0) {
+            binding?.imageView?.visibility = INVISIBLE
+            binding?.textView?.visibility = INVISIBLE
+        } else {
+            binding?.imageView?.visibility = VISIBLE
+            binding?.textView?.visibility = VISIBLE
+        }
     }
 }
+
+//            binding?.imageView?.visibility = when (binding?.imageView?.visibility) {
+//                View.VISIBLE -> View.INVISIBLE
+//                View.INVISIBLE -> View.VISIBLE
+//                else -> View.VISIBLE
+//            }
+//
+//            binding?.textView?.visibility = when (binding?.textView?.visibility) {
+//                View.VISIBLE -> View.INVISIBLE
+//                View.INVISIBLE -> View.VISIBLE
+//                else -> View.VISIBLE
+//            }

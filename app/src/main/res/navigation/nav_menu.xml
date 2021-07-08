@@ -10,7 +10,9 @@
         android:id="@+id/daylyTaskFragment"
         android:name="summerpractice.team7.mymemory.DaylyTaskFragment"
         android:label="fragment_dayly_task"
-        tools:layout="@layout/fragment_dayly_task" />
+        tools:layout="@layout/fragment_dayly_task">
+    </fragment>
+
     <fragment
         android:id="@+id/achievementFragment"
         android:name="summerpractice.team7.mymemory.AchievementFragment"
@@ -21,4 +23,10 @@
         android:name="summerpractice.team7.mymemory.AllTaskFragment"
         android:label="fragment_all_task"
         tools:layout="@layout/fragment_all_task" />
+    <fragment
+        android:id="@+id/createTaskFragment"
+        android:name="summerpractice.team7.mymemory.CreateTaskFragment"
+        android:label="fragment_create_task2"
+        tools:layout="@layout/fragment_create_task" >
+    </fragment>
 </navigation>

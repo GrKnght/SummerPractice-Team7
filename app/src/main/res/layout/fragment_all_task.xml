@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EC9AF3"
-    tools:context=".AllTaskFragment">
+    tools:context=".ui.fragment.AllTaskFragment">
 
     <ImageView
         android:id="@+id/imageView"

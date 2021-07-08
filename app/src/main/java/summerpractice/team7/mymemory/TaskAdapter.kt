@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import summerpractice.team7.mymemory.databinding.TaskViewBinding
+import summerpractice.team7.mymemory.model.Task
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
 
@@ -17,8 +17,8 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
         fun bind(task: Task) = with(binding) {
             taskName.text = task.name
             aboutTask.text = task.description
-            startOfTime.text = task.start_date.toString()
-            endOfTime.text = task.end_date.toString()
+            startOfTime.text = task.startDate.toString()
+            endOfTime.text = task.endDate.toString()
         }
     }
 

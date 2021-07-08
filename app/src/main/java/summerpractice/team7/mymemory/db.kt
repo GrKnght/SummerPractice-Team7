@@ -1,0 +1,111 @@
+package summerpractice.team7.mymemory
+
+import android.app.Activity
+import androidx.room.*
+
+
+enum class TaskStatus {
+    NotStarted,
+    InProgress,
+    Finished,
+    Failed
+}
+
+class db {
+    @Entity(tableName = "tasks")
+    data class Task(
+        @PrimaryKey val id: Int,
+        @ColumnInfo(name = "name") val name: String,
+        @ColumnInfo(name = "desc") val description: String?,
+        @ColumnInfo(name = "sd") val start_date: Long? = null,
+        @ColumnInfo(name = "ed") val end_date: Long? = null,
+        @ColumnInfo(name = "status") val status: TaskStatus = TaskStatus.NotStarted
+    )
+
+    fun createDBInstance(activity: Activity): AppDatabase {
+        return Room.databaseBuilder(
+            activity,
+            AppDatabase::class.java, "mymemory"
+        ).build()
+    }
+
+    @Database(entities = [Task::class], version = 1)
+    abstract class AppDatabase : RoomDatabase() {
+        abstract fun tasksDao(): TasksDao
+    }
+
+    // Примеры:
+    // val db = createDBInstance(MainActivity)
+    // val taskDao = db.tasksDao()
+    // val inProgressTasks: List<Task> = taskDao.getTasksWithStatus(TaskStatus.InProgress)
+    // val tasks: List<Task> = taskDao.getAll()
+    // val updatedTasks: List<Task> = taskDao.updateOutdatedStatuses()
+
+    @Dao
+    interface TasksDao {
+        @Query("SELECT * FROM tasks")
+        fun getAll(): List<Task>
+
+        @Query("SELECT * FROM tasks WHERE id IN (:ids)")
+        fun getMultiple(ids: IntArray): List<Task>
+
+        @Query("SELECT * FROM tasks WHERE (id=:id)")
+        fun get(id: Int): Task
+
+        @Query("SELECT * FROM tasks WHERE (status=:status)")
+        fun getTasksWithStatus(status: TaskStatus): List<Task>
+
+        @Insert
+        fun addMultiple(vararg tasks: Task)
+
+        @Insert
+        fun add(task: Task)
+
+        @Update
+        fun update(task: Task?)
+
+        @Update
+        fun updateMultiple(vararg tasks: Task)
+
+        @Query("UPDATE tasks SET status=:status WHERE (id=:id)")
+        fun updateStatus(id: Int, status: TaskStatus)
+
+        @Delete
+        fun delete(task: Task)
+
+        @Query("DELETE FROM tasks WHERE (id=:id)")
+        fun deleteById(id: Int)
+
+        fun updateOutdatedStatuses() : List<Task> {
+            // NotStarted => InProgress by start_date
+            val updatedTasks: MutableList<Task> = ArrayList()
+            val unixTime = System.currentTimeMillis() / 1000L
+            val inProgressTasks: List<Task> = this.getTasksWithStatus(TaskStatus.InProgress)
+            for (task in inProgressTasks) {
+                if (task.end_date !== null) {
+                    if (unixTime > task.end_date) {
+                        this.updateStatus(task.id, TaskStatus.Failed)
+                        updatedTasks.add(this.get(task.id))
+                    }
+                }
+            }
+            val notStartedTasks: List<Task> = this.getTasksWithStatus(TaskStatus.NotStarted)
+            for (task in notStartedTasks) {
+                if (task.start_date !== null) {
+                    if (unixTime > task.start_date) {
+                        this.updateStatus(task.id, TaskStatus.InProgress)
+                        updatedTasks.add(this.get(task.id))
+                    }
+                }
+            }
+            /*
+            If updatedTasks array contains InProgress task, then
+            this task was NotStarted before,
+            you should add notification, that this task started.
+            Same for Failed task, because time ran out, notify
+            user about failed task
+             */
+            return updatedTasks
+        }
+    }
+}

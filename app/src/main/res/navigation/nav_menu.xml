@@ -3,30 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_menu"
-
-    app:startDestination="@id/daylyTaskFragment">
+    app:startDestination="@id/dailyTaskFragment">
 
     <fragment
-        android:id="@+id/daylyTaskFragment"
-        android:name="summerpractice.team7.mymemory.DaylyTaskFragment"
-        android:label="fragment_dayly_task"
-        tools:layout="@layout/fragment_dayly_task">
+        android:id="@+id/dailyTaskFragment"
+        android:name="summerpractice.team7.mymemory.ui.main.fragment.DailyTaskFragment"
+        android:label="fragment_daily_task"
+        tools:layout="@layout/fragment_daily_task">
     </fragment>
-
     <fragment
         android:id="@+id/achievementFragment"
-        android:name="summerpractice.team7.mymemory.AchievementFragment"
+        android:name="summerpractice.team7.mymemory.ui.main.fragment.AchievementFragment"
         android:label="fragment_achievement"
-        tools:layout="@layout/fragment_achievement" />
+        tools:layout="@layout/fragment_achievement">
+    </fragment>
     <fragment
         android:id="@+id/allTaskFragment"
-        android:name="summerpractice.team7.mymemory.AllTaskFragment"
+        android:name="summerpractice.team7.mymemory.ui.main.fragment.AllTaskFragment"
         android:label="fragment_all_task"
-        tools:layout="@layout/fragment_all_task" />
-    <fragment
-        android:id="@+id/createTaskFragment"
-        android:name="summerpractice.team7.mymemory.CreateTaskFragment"
-        android:label="fragment_create_task2"
-        tools:layout="@layout/fragment_create_task" >
+        tools:layout="@layout/fragment_all_task">
     </fragment>
 </navigation>

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MyMEMory</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bottom_nav_all_task">Список задач</string>
+    <string name="bottom_nav_achievements">Достижения</string>
+    <string name="bottom_nav_completed_tasks">Выполненные задачи</string>
 </resources>

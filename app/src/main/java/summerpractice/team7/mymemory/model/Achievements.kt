@@ -1,4 +1,4 @@
-package summerpractice.team7.mymemory
+package summerpractice.team7.mymemory.model
 
 import android.content.Context
 import android.widget.ImageView

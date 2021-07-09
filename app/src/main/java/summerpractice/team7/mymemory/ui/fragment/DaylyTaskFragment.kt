@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.TaskAdapter
 import summerpractice.team7.mymemory.databinding.FragmentDaylyTaskBinding
+import summerpractice.team7.mymemory.db
 import summerpractice.team7.mymemory.model.Task
 
 class DaylyTaskFragment : Fragment() {

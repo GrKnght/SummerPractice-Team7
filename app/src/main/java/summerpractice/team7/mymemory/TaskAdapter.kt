@@ -9,7 +9,7 @@ import summerpractice.team7.mymemory.model.Task
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
 
-    val taskList = ArrayList<Task>()
+    private val taskList = ArrayList<Task>()
 
     class TaskHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = TaskViewBinding.bind(item)
@@ -39,7 +39,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
 
     fun addTask(task: Task) {
         taskList.add(task)
-        notifyItemChanged(taskList.indexOf(task))
+        notifyDataSetChanged()
     }
 
     fun removeTask(task: Task): ArrayList<Task> {

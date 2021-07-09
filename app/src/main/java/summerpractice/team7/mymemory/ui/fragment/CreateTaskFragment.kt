@@ -15,12 +15,13 @@ class CreateTaskFragment : BaseFragment() {
 
     private var binding: FragmentCreateTaskBinding? = null
 
-    override fun onCreateView(
+        override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCreateTaskBinding.inflate(inflater, container, false)
+
         return binding?.root
     }
 
@@ -37,11 +38,13 @@ class CreateTaskFragment : BaseFragment() {
         binding?.let {
             with(it) {
                 saveTaskBtn.setOnClickListener {
+                    var result: Task = Task(1,
+                        binding?.taskNameEt?.text.toString(), binding?.taskDescriptionEt?.text.toString(), 1010, 2020, 1)
                     // TODO Сохранять таск в БД
                     parentFragmentManager.beginTransaction()
                         .replace(
                             R.id.fragment,
-                            DaylyTaskFragment.getInstance(),
+                            DaylyTaskFragment.getInstance(result),
                             "DAILY_TASK_FRAGMENT"
                         )
                         .commit()

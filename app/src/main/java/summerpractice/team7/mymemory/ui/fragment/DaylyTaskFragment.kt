@@ -8,15 +8,16 @@ import android.view.View.*
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.TaskAdapter
 import summerpractice.team7.mymemory.databinding.FragmentDaylyTaskBinding
 import summerpractice.team7.mymemory.model.Task
-import java.security.InvalidParameterException
 
 class DaylyTaskFragment : Fragment() {
 
     private var binding: FragmentDaylyTaskBinding? = null
     private val adapter = TaskAdapter()
+
 
     private fun getTask(): Task? = arguments?.getSerializable(TASK_TAG) as? Task
 
@@ -32,19 +33,18 @@ class DaylyTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        loadTasks()
         addTask()
     }
 
-    private fun addTask() {
+    fun addTask() {
         getTask()?.let { task ->
             adapter.addTask(task)
+            setupNoTasksNotifications()
         }
     }
 
     private fun loadTasks() {
         // TODO Загрузка из БД, передача тасков адаптеру RV
-
     }
 
     private fun init() {
@@ -54,17 +54,13 @@ class DaylyTaskFragment : Fragment() {
         binding?.rectangles?.adapter = adapter
         val addingTask = binding?.addingTask
         addingTask?.setOnClickListener {
-            adapter.addTask(
-                Task(
-                    1, "Пока ничего", "Пока тоже ничего",
-                    10101010, 202020022, 12
-                )
-            )
+            parentFragmentManager.beginTransaction().
+                replace(R.id.fragment, CreateTaskFragment()).commit()
         }
     }
 
-    private fun setupNoTasksNotifications() {
-        if (arrayListOf(binding?.rectangles).size == 0) {
+    fun setupNoTasksNotifications() {
+        if (arrayListOf(binding?.rectangles).size != 0) {
             binding?.imageView?.visibility = INVISIBLE
             binding?.textView?.visibility = INVISIBLE
         } else {

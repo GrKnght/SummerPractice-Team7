@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import summerpractice.team7.mymemory.R
 
-class AllTaskFragment(
-    age: Int,
-    name: String
-) : Fragment() {
+class AllTaskFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

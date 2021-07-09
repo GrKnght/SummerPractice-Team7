@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import summerpractice.team7.mymemory.databinding.FragmentCreateTaskBinding
+import summerpractice.team7.mymemory.model.TaskModel
+import summerpractice.team7.mymemory.ui.adapter.TaskAdapter
+import summerpractice.team7.mymemory.ui.main.fragment.DailyTaskFragment
 
 class CreateTaskFragment : Fragment() {
 
@@ -28,15 +31,17 @@ class CreateTaskFragment : Fragment() {
     fun initialize(
         rectangles: RecyclerView?,
         adapter: TaskAdapter,
-        daylyTaskFragment: DaylyTaskFragment
+        daylyTaskFragment: DailyTaskFragment
     ) {
         rectangles?.adapter = adapter
-        val createTask = binding?.completing
+        val createTask = binding?.saveTaskBtn
         createTask?.setOnClickListener {
-            adapter.addTask(Task(1, binding?.taskName.toString(),
-            binding?.taskDescription.toString(), 10101, 12123, 1))
+            adapter.addTask(
+                TaskModel(1, binding?.taskNameEt.toString(),
+            binding?.taskDescriptionEt.toString(), 10101, 12123, 1)
+            )
             parentFragmentManager.beginTransaction()
-                .replace(R.id.createTaskFragment, daylyTaskFragment)
+                .replace(R.id.creating_frag, daylyTaskFragment)
                 .commit()
         }
     }

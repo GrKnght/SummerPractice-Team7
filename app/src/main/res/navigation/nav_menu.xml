@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_menu"
-
     app:startDestination="@id/daylyTaskFragment">
 
     <fragment
         android:id="@+id/daylyTaskFragment"
-        android:name="summerpractice.team7.mymemory.ui.main.fragment.DaylyTaskFragment"
+        android:name="summerpractice.team7.mymemory.ui.main.fragment.DailyTaskFragment"
         android:label="fragment_dayly_task"
-        tools:layout="@layout/fragment_dayly_task" />
+        tools:layout="@layout/fragment_daily_task" />
     <fragment
         android:id="@+id/achievementFragment"
         android:name="summerpractice.team7.mymemory.ui.main.fragment.AchievementFragment"

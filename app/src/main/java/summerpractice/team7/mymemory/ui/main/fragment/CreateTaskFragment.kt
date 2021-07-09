@@ -15,7 +15,7 @@ class CreateTaskFragment : BaseFragment() {
 
     private var binding: FragmentCreateTaskBinding? = null
 
-        override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,7 +27,7 @@ class CreateTaskFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task = Task(
+        val task = TaskModel(
             id = 1,
             name = "Задание",
             description = "Описание",
@@ -38,13 +38,19 @@ class CreateTaskFragment : BaseFragment() {
         binding?.let {
             with(it) {
                 saveTaskBtn.setOnClickListener {
-                    var result: TaskModel = TaskModel(1,
-                        binding?.taskNameEt?.text.toString(), binding?.taskDescriptionEt?.text.toString(), 1010, 2020, 1)
+                    var result: TaskModel = TaskModel(
+                        1,
+                        binding?.taskNameEt?.text.toString(),
+                        binding?.taskDescriptionEt?.text.toString(),
+                        1010,
+                        2020,
+                        1
+                    )
                     // TODO Сохранять таск в БД
                     parentFragmentManager.beginTransaction()
                         .replace(
                             R.id.fragment,
-                            DaylyTaskFragment.getInstance(result),
+                            DailyTaskFragment.getInstance(result),
                             "DAILY_TASK_FRAGMENT"
                         )
                         .commit()

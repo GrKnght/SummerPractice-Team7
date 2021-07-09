@@ -31,8 +31,8 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
         fun bind(item: TaskModel) = with(binding) {
             taskName.text = item.name
             aboutTask.text = item.description
-            startOfTime.text = item.start_date.toString()
-            endOfTime.text = item.end_date.toString()
+            startOfTime.text = item.startDate.toString()
+            endOfTime.text = item.endDate.toString()
             clickListener?.invoke(item)
         }
     }

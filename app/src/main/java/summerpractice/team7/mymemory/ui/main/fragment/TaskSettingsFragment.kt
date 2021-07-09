@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import summerpractice.team7.mymemory.R
+import summerpractice.team7.mymemory.databinding.FragmentTaskSettingsBinding
 
 class TaskSettingsFragment : Fragment() {
 
-    //private var binding: FragmentTaskSettingsBinding? = null
+    private var binding: FragmentTaskSettingsBinding? = null
 
-    /*override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -26,7 +27,7 @@ class TaskSettingsFragment : Fragment() {
 
     private fun inited() {
         binding?.taskCompleted?.setOnClickListener {
-            
+
         }
-    }*/
+    }
 }

@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.model.TaskModel
-import summerpractice.team7.mymemory.databinding.FragmentDaylyTaskBinding
+import summerpractice.team7.mymemory.databinding.FragmentDailyTaskBinding
 import summerpractice.team7.mymemory.ui.adapter.TaskAdapter
 
-class DaylyTaskFragment : Fragment() {
+class DailyTaskFragment : Fragment() {
 
-    private var binding: FragmentDaylyTaskBinding? = null
+    private var binding: FragmentDailyTaskBinding? = null
     private val adapter = TaskAdapter()
 
 
@@ -26,7 +26,7 @@ class DaylyTaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDaylyTaskBinding.inflate(inflater, container, false)
+        binding = FragmentDailyTaskBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
@@ -73,8 +73,8 @@ class DaylyTaskFragment : Fragment() {
 
         private const val TASK_TAG = "TAG_NEW_TASK"
 
-        fun getInstance(task: TaskModel? = null): DaylyTaskFragment {
-            val fragment = DaylyTaskFragment()
+        fun getInstance(task: TaskModel? = null): DailyTaskFragment {
+            val fragment = DailyTaskFragment()
             task?.let { task ->
                 fragment.arguments = Bundle().apply {
                     putSerializable(TASK_TAG, task)

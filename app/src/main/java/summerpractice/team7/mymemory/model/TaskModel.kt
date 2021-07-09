@@ -6,7 +6,7 @@ data class TaskModel(
     var id: Int,
     var name: String,
     var description: String,
-    var start_date: Long? = null,
-    var end_date: Long? = null,
+    var startDate: Long? = null,
+    var endDate: Long? = null,
     var status: Int
 ): Serializable

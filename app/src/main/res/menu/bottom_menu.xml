@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/daylyTaskFragment"
+        android:id="@+id/dailyTaskFragment"
         android:icon="@drawable/dayly_tasks_icon"
-        android:title="Список задач"/>
+        android:title="@string/bottom_nav_all_task" />
 
     <item
         android:id="@+id/achievementFragment"
         android:icon="@drawable/achievement_icon"
-        android:title="Достижения"/>
+        android:title="@string/bottom_nav_achievements" />
 
     <item
         android:id="@+id/allTaskFragment"
         android:icon="@drawable/all_tasks_icon"
-        android:title="Выполненные задачи"/>
+        android:title="@string/bottom_nav_completed_tasks" />
 
 </menu>

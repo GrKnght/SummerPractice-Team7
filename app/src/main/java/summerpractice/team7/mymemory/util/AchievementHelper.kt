@@ -1,9 +1,9 @@
-package summerpractice.team7.mymemory
+package summerpractice.team7.mymemory.util
 
 import android.content.Context
 import android.widget.ImageView
-import summerpractice.team7.mymemory.dao.AchievementsDao
-import summerpractice.team7.mymemory.entity.AchievementEntity
+import summerpractice.team7.mymemory.db.dao.AchievementsDao
+import summerpractice.team7.mymemory.db.entity.AchievementEntity
 
 class AchievementHelper(val achievementsDao: AchievementsDao) {
     fun unlockRandom(): AchievementEntity {

@@ -1,7 +1,7 @@
-package summerpractice.team7.mymemory.dao
+package summerpractice.team7.mymemory.db.dao
 
 import androidx.room.*
-import summerpractice.team7.mymemory.entity.TaskEntity
+import summerpractice.team7.mymemory.db.entity.TaskEntity
 
 @Dao
 interface TasksDao {

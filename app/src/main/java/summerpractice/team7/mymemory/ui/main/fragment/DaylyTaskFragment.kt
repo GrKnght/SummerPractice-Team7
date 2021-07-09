@@ -1,21 +1,16 @@
-package summerpractice.team7.mymemory
+package summerpractice.team7.mymemory.ui.main.fragment
 
-import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import summerpractice.team7.mymemory.databinding.ActivityMainBinding
+import summerpractice.team7.mymemory.model.TaskModel
 import summerpractice.team7.mymemory.databinding.FragmentDaylyTaskBinding
-import summerpractice.team7.mymemory.databinding.TaskViewBinding
+import summerpractice.team7.mymemory.ui.adapter.TaskAdapter
 
 class DaylyTaskFragment : Fragment() {
 
@@ -36,7 +31,7 @@ class DaylyTaskFragment : Fragment() {
         init()
     }
 
-    fun init() {
+    private fun init() {
         binding?.rectangles?.layoutManager = LinearLayoutManager(requireContext()).apply {
             orientation = RecyclerView.VERTICAL
         }
@@ -44,7 +39,7 @@ class DaylyTaskFragment : Fragment() {
         val addingTask = binding?.addingTask
         addingTask?.setOnClickListener {
             adapter.addTask(
-                Task(
+                TaskModel(
                     1, "Пока ничего", "Пока тоже ничего",
                     10101010, 202020022, 12
                 )

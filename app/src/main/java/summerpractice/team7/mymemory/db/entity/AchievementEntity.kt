@@ -1,4 +1,4 @@
-package summerpractice.team7.mymemory.entity
+package summerpractice.team7.mymemory.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

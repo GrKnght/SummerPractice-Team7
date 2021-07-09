@@ -8,17 +8,17 @@
 
     <fragment
         android:id="@+id/daylyTaskFragment"
-        android:name="summerpractice.team7.mymemory.DaylyTaskFragment"
+        android:name="summerpractice.team7.mymemory.ui.main.fragment.DaylyTaskFragment"
         android:label="fragment_dayly_task"
         tools:layout="@layout/fragment_dayly_task" />
     <fragment
         android:id="@+id/achievementFragment"
-        android:name="summerpractice.team7.mymemory.AchievementFragment"
+        android:name="summerpractice.team7.mymemory.ui.main.fragment.AchievementFragment"
         android:label="fragment_achievement"
         tools:layout="@layout/fragment_achievement" />
     <fragment
         android:id="@+id/allTaskFragment"
-        android:name="summerpractice.team7.mymemory.AllTaskFragment"
+        android:name="summerpractice.team7.mymemory.ui.main.fragment.AllTaskFragment"
         android:label="fragment_all_task"
         tools:layout="@layout/fragment_all_task" />
 </navigation>

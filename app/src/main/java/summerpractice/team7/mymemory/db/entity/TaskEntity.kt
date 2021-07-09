@@ -1,9 +1,9 @@
-package summerpractice.team7.mymemory.entity
+package summerpractice.team7.mymemory.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import summerpractice.team7.mymemory.dao.TasksDao.TaskStatus
+import summerpractice.team7.mymemory.db.dao.TasksDao.TaskStatus
 
 @Entity(tableName = "tasks")
 data class TaskEntity(

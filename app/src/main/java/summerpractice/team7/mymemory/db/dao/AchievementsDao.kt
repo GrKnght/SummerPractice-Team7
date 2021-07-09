@@ -1,8 +1,8 @@
-package summerpractice.team7.mymemory.dao
+package summerpractice.team7.mymemory.db.dao
 
 import android.util.Log
 import androidx.room.*
-import summerpractice.team7.mymemory.entity.AchievementEntity
+import summerpractice.team7.mymemory.db.entity.AchievementEntity
 
 @Dao
 interface AchievementsDao {

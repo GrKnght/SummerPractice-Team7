@@ -22,7 +22,7 @@ interface AchievementsDao {
     fun getAllUnlocked(): List<AchievementEntity>
 
     @Insert
-    fun addMultiple(vararg achievements: ArrayList<AchievementEntity>)
+    fun addMultiple(vararg achievements: AchievementEntity)
 
     @Insert
     fun add(task: AchievementEntity)
@@ -33,10 +33,10 @@ interface AchievementsDao {
     @Update
     fun updateMultiple(vararg achievements: AchievementEntity)
 
-    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RAND() LIMIT 1")
+    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RANDOM() LIMIT 1")
     fun getRandomUnlocked(): AchievementEntity
 
-    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RAND() LIMIT 1")
+    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RANDOM() LIMIT 1")
     fun getRandomLocked(): AchievementEntity
 
     @Transaction

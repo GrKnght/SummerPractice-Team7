@@ -7,7 +7,7 @@ import summerpractice.team7.mymemory.db.dao.TasksDao.TaskStatus
 
 @Entity(tableName = "tasks")
 data class TaskEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "desc") val description: String?,
     @ColumnInfo(name = "sd") val start_date: Long? = null,

@@ -41,6 +41,12 @@ interface TasksDao {
     @Update
     fun update(task: TaskEntity)
 
+    @Query("SELECT COUNT(1) FROM tasks")
+    fun count(): Int
+
+    @Query("SELECT id FROM tasks ORDER BY id DESC LIMIT 1")
+    fun lastId(): Int
+
     @Update
     fun updateMultiple(vararg tasks: TaskEntity)
 

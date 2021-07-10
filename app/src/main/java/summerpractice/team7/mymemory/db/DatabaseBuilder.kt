@@ -30,23 +30,23 @@ class DatabaseBuilder {
                 AchievementHelper(achievementDao).initializeDB()
             }
             userAchievementsCount != defaultAchievementsCount -> {
-                Log.d("MainActivity.initDB","User has different achievements, reinitializing...")
-                Log.d("MainActivity.initDB","User: $userAchievementsCount | Default: $defaultAchievementsCount")
+                Log.d("DatabaseBuilder.initDB","User has different achievements, reinitializing...")
+                Log.d("DatabaseBuilder.initDB","User: $userAchievementsCount | Default: $defaultAchievementsCount")
                 val unlockedTasks = AchievementHelper(achievementDao).getUnlocked()
                 achievementDao.destroyTable()
                 AchievementHelper(achievementDao).initializeDB()
                 for (task in unlockedTasks) {
                     try {
                         achievementDao.unlockById(task.id, task.unlockedAt)
-                        Log.d("MainActivity.initDB","- Migrated task id ${task.id}")
+                        Log.d("DatabaseBuilder.initDB","- Migrated task id ${task.id}")
                     } catch(e: Exception) {
-                        Log.d("MainActivity.initDB","- Ignored task id ${task.id} (no longed exists)")
+                        Log.d("DatabaseBuilder.initDB","- Ignored task id ${task.id} (no longed exists)")
                     }
                 }
-                Log.d("MainActivity.initDB","Successfully migrated achievements table")
+                Log.d("DatabaseBuilder.initDB","Successfully migrated achievements table")
             }
             else -> {
-                Log.d("MainActivity.initDB","No achievement migration needed")
+                Log.d("DatabaseBuilder.initDB","No achievement migration needed")
             }
         }
         return db

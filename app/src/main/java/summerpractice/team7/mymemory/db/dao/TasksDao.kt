@@ -12,6 +12,14 @@ interface TasksDao {
         Failed
     }
 
+    class Converters {
+        @TypeConverter
+        fun toTaskStatus(value: Int) = enumValues<TaskStatus>()[value]
+
+        @TypeConverter
+        fun fromTaskStatus(value: TaskStatus) = value.ordinal
+    }
+
     @Query("SELECT * FROM tasks")
     fun getAll(): List<TaskEntity>
 

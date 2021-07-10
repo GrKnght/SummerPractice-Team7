@@ -36,7 +36,7 @@ interface AchievementsDao {
     @Update
     fun updateMultiple(vararg achievements: AchievementEntity)
 
-    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RANDOM() LIMIT 1")
+    @Query("SELECT * FROM achievements WHERE (time != null) ORDER BY RANDOM() LIMIT 1")
     fun getRandomUnlocked(): AchievementEntity
 
     @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RANDOM() LIMIT 1")

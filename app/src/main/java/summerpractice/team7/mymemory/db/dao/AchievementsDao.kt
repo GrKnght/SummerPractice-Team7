@@ -30,6 +30,9 @@ interface AchievementsDao {
     @Update
     fun update(task: AchievementEntity)
 
+    @Query("SELECT COUNT(1) FROM achievements")
+    fun count(): Int
+
     @Update
     fun updateMultiple(vararg achievements: AchievementEntity)
 

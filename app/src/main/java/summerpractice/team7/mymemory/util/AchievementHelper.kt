@@ -16,7 +16,7 @@ class AchievementHelper(val achievementsDao: AchievementsDao) {
         return achievementsDao.getAllUnlocked()
     }
     fun count(): Int {
-        return achievementsDao.getAll().count()
+        return achievementsDao.count()
     }
     fun defaultAchievementListCount(): Int {
         return achievementList.count()

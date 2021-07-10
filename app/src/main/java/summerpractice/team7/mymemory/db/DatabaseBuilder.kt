@@ -23,7 +23,7 @@ class DatabaseBuilder {
     fun initDB(activity: Activity): MyMEMoryDB {
         val db = createDBInstance(activity)
         val achievementDao = db.achievementDao()
-        val userAchievementsCount = achievementDao.getAll().count()
+        val userAchievementsCount = achievementDao.count()
         val defaultAchievementsCount = AchievementHelper(achievementDao).defaultAchievementListCount()
         when {
             userAchievementsCount == 0 -> {

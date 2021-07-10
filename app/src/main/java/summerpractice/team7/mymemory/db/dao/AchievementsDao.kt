@@ -39,6 +39,9 @@ interface AchievementsDao {
     @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RANDOM() LIMIT 1")
     fun getRandomLocked(): AchievementEntity
 
+    @Query("DELETE FROM achievements")
+    fun destroyTable()
+
     @Transaction
     fun unlockRandom(): AchievementEntity {
         return try {
@@ -63,7 +66,7 @@ interface AchievementsDao {
     fun lockById(id: Int)
 
     @Query("UPDATE achievements SET time=:unlockedAt WHERE (id=:id)")
-    fun unlockById(id: Int, unlockedAt: Long = (System.currentTimeMillis() / 1000L))
+    fun unlockById(id: Int, unlockedAt: Long? = (System.currentTimeMillis() / 1000L))
 
     @Delete
     fun delete(task: AchievementEntity)

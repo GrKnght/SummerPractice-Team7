@@ -15,6 +15,12 @@ class AchievementHelper(val achievementsDao: AchievementsDao) {
     fun getUnlocked(): List<AchievementEntity> {
         return achievementsDao.getAllUnlocked()
     }
+    fun count(): Int {
+        return achievementsDao.getAll().count()
+    }
+    fun defaultAchievementListCount(): Int {
+        return achievementList.count()
+    }
     fun initializeDB() {
         achievementsDao.addMultiple(*achievementList)
     }

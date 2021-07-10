@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private var binding: ActivityMainBinding? = null
-    //lateinit var db: MyMEMoryDB
+    lateinit var db: MyMEMoryDB
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         initNavController()
-       // db = DatabaseBuilder().createDBInstance(this)
+        db = DatabaseBuilder().createDBInstance(this)
 
 
         //val myWorker = MyWorker(application Context, )

@@ -4,11 +4,13 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import summerpractice.team7.mymemory.db.dao.AchievementsDao
 import summerpractice.team7.mymemory.db.dao.TasksDao
+import summerpractice.team7.mymemory.db.entity.AchievementEntity
+import summerpractice.team7.mymemory.db.entity.TaskEntity
 
 @Database(
     entities = [
-        TasksDao::class,
-        AchievementsDao::class
+        TaskEntity::class,
+        AchievementEntity::class
     ],
     version = 1
 )

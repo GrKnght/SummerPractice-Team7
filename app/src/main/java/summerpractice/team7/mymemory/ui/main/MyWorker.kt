@@ -3,6 +3,12 @@ package summerpractice.team7.mymemory
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import summerpractice.team7.mymemory.db.MyMEMoryDB
+import summerpractice.team7.mymemory.db.dao.TasksDao
+import summerpractice.team7.mymemory.db.dao.AchievementsDao
+
+import summerpractice.team7.mymemory.model.TaskModel
+import java.util.*
 
 class MyWorker(context: Context, parameters: WorkerParameters) : Worker(context, parameters) {
 
@@ -11,15 +17,23 @@ class MyWorker(context: Context, parameters: WorkerParameters) : Worker(context,
         return Result.success()
     }
 
-    /*fun onStart(db: MyMEMoryDB) {
+    fun onStart(db: MyMEMoryDB) {
 
-        val task = db.tasksDao().get(id).start_date
+        val id = CreateTaskFragment().id
+        val task = db.tasksDao().get(id)
+        val startTime = db.tasksDao().get(id).start_date
+        val endTime = db.tasksDao().get(id).end_date
         var currentTime = Calendar.getInstance().timeInMillis
-        val estimated = currentTime + task.db.start_date()
-        db.tasksDao().updateStatus(id)
+        db.tasksDao().update(task)
 
-        if (estimated - currentTime != 0){
+        if (currentTime != endTime){
+            db.tasksDao().updateStatus(id, TasksDao.TaskStatus.Finished)
+            val newAchievement = db.achievementDao().unlockRandom().id
+            db.achievementDao().unlockById(newAchievement)
+        } else {
+            db.tasksDao().updateStatus(id, TasksDao.TaskStatus.Failed)
+            val deleteAchievement = db.achievementDao().getRandomUnlocked().id
 
         }
-    }*/
+    }
 }

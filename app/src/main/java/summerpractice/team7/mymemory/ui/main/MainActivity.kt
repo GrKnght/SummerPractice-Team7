@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         db.tasksDao().updateStatus(task.id, TasksDao.TaskStatus.Finished)
         val locked = db.achievementDao().getRandomLocked()
         db.achievementDao().unlockById(locked.id, Calendar.getInstance().timeInMillis)
-        showAlertDialog("Поздравляем", "Вы успешно завершили ${task.name}\nРазблокировано достижение \"${locked.name}\"")
+        showAlertDialog("Поздравляем", "Вы успешно завершили «${task.name}»\nРазблокировано достижение «${locked.name}»")
     }
 }
 

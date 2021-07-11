@@ -52,7 +52,7 @@ class AchievementFragment : Fragment() {
         adapter?.clickListener = {
             val calendar: Calendar = Calendar.getInstance()
             calendar.timeInMillis = it.unlockedAt * 1000
-            Toast.makeText(requireContext(), "${it.name} (разблокировано в ${
+            Toast.makeText(requireContext(), "«${it.name}»\n (разблокировано в ${
                 DateFormat.getTimeInstance().format(calendar.time)})", Toast.LENGTH_SHORT)
                 .show()
         }

@@ -29,17 +29,16 @@ class AchievementHelper(val achievementsDao: AchievementsDao) {
         //return AchievementEntity(id = id, name = name, drawableName = drawableName)
     }
     private val achievementList: Array<AchievementEntity> = arrayOf(
-        generateAchievement(0, "memes_one", "memes_one"),
-        generateAchievement(1, "memes_two", "memes_two"),
-        generateAchievement(2, "memes_three", "memes_three"),
-        generateAchievement(3, "memes_four", "memes_four"),
-        generateAchievement(4, "memes_five", "memes_five"),
-        generateAchievement(5, "memes_six", "memes_six"),
-        generateAchievement(6, "memes_seven", "memes_seven"),
-        generateAchievement(7, "memes_eight", "memes_eight"),
-        generateAchievement(8, "memes_nine", "memes_nine"),
-        generateAchievement(9, "memes_ten", "memes_ten"),
-        generateAchievement(10, "memes_eleven", "memes_eleven")
+        generateAchievement(0, "Лапки в тапки", "memes_one"),
+        generateAchievement(1, "Ничего не понятно...", "memes_two"),
+        generateAchievement(2, "Эвоки", "memes_three"),
+        generateAchievement(3, "Собака и пузырек", "memes_four"),
+        generateAchievement(4, "Котик и пузырек", "memes_five"),
+        generateAchievement(5, "Возмущенная жаба", "memes_six"),
+        generateAchievement(6, "Секта лягушек", "memes_seven"),
+        generateAchievement(7, "Кошка-картошка", "memes_eight"),
+        generateAchievement(8, "Лень тюленя", "memes_nine"),
+        generateAchievement(10, "В раздумье...", "memes_eleven")
     )
     fun setDrawable(achievementEntity: AchievementEntity, imageView: ImageView) {
         if (achievementEntity.drawableName !== null) {

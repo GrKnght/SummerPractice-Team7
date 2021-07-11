@@ -58,7 +58,7 @@ class CreateTaskFragment : BaseFragment() {
                         name = binding?.taskNameEt?.text.toString(),
                         description = binding?.taskDescriptionEt?.text.toString(),
                         start_date = System.currentTimeMillis() / 1000L,
-                        end_date = calendar.timeInMillis / 1000L
+                        end_date = calendar.timeInMillis / 1000L,
                         status = TasksDao.TaskStatus.InProgress
                     )
                     // TODO Сохранять таск в БД

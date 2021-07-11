@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -14,14 +13,13 @@ import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.ActivityMainBinding
 import summerpractice.team7.mymemory.db.DatabaseBuilder
 import summerpractice.team7.mymemory.db.MyMEMoryDB
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private var binding: ActivityMainBinding? = null
-    private var startTask: Button? = null
-    private var finishTask: Button? = null
+    private var startButton: Button? = null
+    private var finishButton: Button? = null
 
     lateinit var db: MyMEMoryDB
 
@@ -32,23 +30,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
         initNavController()
         db = DatabaseBuilder().initDB(this)
-        finishTask?.visibility = View.GONE
 
 
         //val myWorker = MyWorker()
 
-        /*if (startTask !== null) {
+        /*if (startButton !== null) {
             MyWorker.onStart()
-            finishTask!!.visibility = View.VISIBLE
-            startTask!!.visibility = View.GONE
 
-
-            if (finishTask == null) {
-                finishTask = findViewById(R.id.addingTask)
-                finishTask?.setOnClickListener{
+            if (finishButton == null) {
+                finishButton = findViewById(R.id.addingTask)
+                finishButton?.setOnClickListener{
                     MyWorker.onSuccess()
-                    finishTask!!.visibility = View.GONE
-                    startTask!!.visibility = View.VISIBLE
                 }
             } else {
                 MyWorker.onFailled()
@@ -64,8 +56,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun findView(view: View){
-        startTask = view.findViewById(R.id.startTask)
-        finishTask = view.findViewById(R.id.finishTask)
+        startButton = view.findViewById(R.id.task_completed)
+        finishButton = view.findViewById(R.id.task_failed)
     }
 
 }

@@ -3,14 +3,14 @@ package summerpractice.team7.mymemory.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import summerpractice.team7.mymemory.model.TaskModel
+import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.databinding.TaskViewBinding
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
-    val taskList = ArrayList<TaskModel>()
+    val taskList = ArrayList<TaskEntity>()
 
-    var clickListener: ((taskModel: TaskModel) -> Unit)? = null
+    var clickListener: ((taskModel: TaskEntity) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder =
         TaskViewHolder(
@@ -28,22 +28,22 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     inner class TaskViewHolder(
         private val binding: TaskViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TaskModel) = with(binding) {
+        fun bind(item: TaskEntity) = with(binding) {
             taskName.text = item.name
             aboutTask.text = item.description
-            startOfTime.text = item.startDate.toString()
-            endOfTime.text = item.endDate.toString()
+            startOfTime.text = item.start_date.toString()
+            endOfTime.text = item.end_date.toString()
             clickListener?.invoke(item)
         }
     }
 
 
-    fun addTask(taskModel: TaskModel) {
+    fun addTask(taskModel: TaskEntity) {
         taskList.add(taskModel)
         notifyItemChanged(taskList.indexOf(taskModel))
     }
 
-    fun removeTask(taskModel: TaskModel): ArrayList<TaskModel> {
+    fun removeTask(taskModel: TaskEntity): ArrayList<TaskEntity> {
         return arrayListOf(taskList.removeAt(taskList.indexOf(taskModel)))
     }
 }

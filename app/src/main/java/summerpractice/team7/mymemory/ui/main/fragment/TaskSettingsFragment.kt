@@ -22,12 +22,12 @@ class TaskSettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        inited()
+//        inited()
     }
 
-    private fun inited() {
-        binding?.taskCompleted?.setOnClickListener {
-
-        }
-    }
+//    private fun inited() {
+//        binding?.taskCompleted?.setOnClickListener {
+//
+//        }
+//    }
 }

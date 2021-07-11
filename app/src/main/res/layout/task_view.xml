@@ -55,7 +55,7 @@
 
 
         <Button
-            android:id="@+id/edit_time"
+            android:id="@+id/btn_end_time"
             android:layout_width="345dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"

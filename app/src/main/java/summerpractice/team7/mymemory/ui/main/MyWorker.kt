@@ -9,31 +9,38 @@ import summerpractice.team7.mymemory.db.dao.AchievementsDao
 
 import summerpractice.team7.mymemory.model.TaskModel
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MyWorker(context: Context, parameters: WorkerParameters) : Worker(context, parameters) {
 
-    override fun doWork() : Result {
 
-        return Result.success()
-    }
+    override fun doWork(): Result {
 
-    fun onStart(db: MyMEMoryDB) {
+        fun onStart(db: MyMEMoryDB, /*значение в миллисекундах, введное польхователей*/) {
 
-        val id = CreateTaskFragment().id
-        val task = db.tasksDao().get(id)
-        val startTime = db.tasksDao().get(id).start_date
-        val endTime = db.tasksDao().get(id).end_date
-        var currentTime = Calendar.getInstance().timeInMillis
-        db.tasksDao().update(task)
+            val id = 0
+            val task = db.tasksDao().get(id)
+            db.tasksDao().updateStatus(id,TasksDao.TaskStatus.InProgress)
 
-        if (currentTime != endTime){
-            db.tasksDao().updateStatus(id, TasksDao.TaskStatus.Finished)
-            val newAchievement = db.achievementDao().unlockRandom().id
-            db.achievementDao().unlockById(newAchievement)
-        } else {
-            db.tasksDao().updateStatus(id, TasksDao.TaskStatus.Failed)
-            val deleteAchievement = db.achievementDao().getRandomUnlocked().id
+            //В startTime прописывается время на выполнение задачи в минутах
 
+            //val startTime = db.tasksDao().get(id)
+
+            //val endTime = db.tasksDao().get(id).end_date
+            //val millisecond = startTime?.let { TimeUnit.MINUTES.convert(it,TimeUnit.MILLISECONDS) }
+            //val endTime = Calendar.getInstance().timeInMillis + millisecond!!
+            //db.tasksDao().update(task)
+
+            var currentTime = Calendar.getInstance().timeInMillis
+
+            /*if (currentTime != endTime) {
+                db.tasksDao().updateStatus(id, TasksDao.TaskStatus.Finished)
+                db.achievementDao().unlockRandom().id
+            } else {
+                db.tasksDao().updateStatus(id, TasksDao.TaskStatus.Failed)
+                db.achievementDao().getRandomUnlocked().id
+            }*/
         }
+        return Result.success()
     }
 }

@@ -29,17 +29,17 @@ class AchievementHelper(val achievementsDao: AchievementsDao) {
         //return AchievementEntity(id = id, name = name, drawableName = drawableName)
     }
     private val achievementList: Array<AchievementEntity> = arrayOf(
-        generateAchievement(0, "one", "one"),
-        generateAchievement(1, "two", "two"),
-        generateAchievement(2, "three", "three"),
-        generateAchievement(3, "four", "four"),
-        generateAchievement(4, "five", "five"),
-        generateAchievement(5, "six", "six"),
-        generateAchievement(6, "seven", "seven"),
-        generateAchievement(7, "eight", "eight"),
-        generateAchievement(8, "nine", "nine"),
-        generateAchievement(9, "ten", "ten"),
-        generateAchievement(10, "eleven", "eleven")
+        generateAchievement(0, "memes_one", "memes_one"),
+        generateAchievement(1, "memes_two", "memes_two"),
+        generateAchievement(2, "memes_three", "memes_three"),
+        generateAchievement(3, "memes_four", "memes_four"),
+        generateAchievement(4, "memes_five", "memes_five"),
+        generateAchievement(5, "memes_six", "memes_six"),
+        generateAchievement(6, "memes_seven", "memes_seven"),
+        generateAchievement(7, "memes_eight", "memes_eight"),
+        generateAchievement(8, "memes_nine", "memes_nine"),
+        generateAchievement(9, "memes_ten", "memes_ten"),
+        generateAchievement(10, "memes_eleven", "memes_eleven")
     )
     fun setDrawable(achievementEntity: AchievementEntity, imageView: ImageView) {
         if (achievementEntity.drawableName !== null) {

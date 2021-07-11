@@ -29,9 +29,17 @@ class AchievementHelper(val achievementsDao: AchievementsDao) {
         //return AchievementEntity(id = id, name = name, drawableName = drawableName)
     }
     private val achievementList: Array<AchievementEntity> = arrayOf(
-        generateAchievement(0,"RarePepe","all_tasks_icon"),
-        // Just to test not found icon
-        generateAchievement(999,"Unknown", null)
+        generateAchievement(0, "one", "one"),
+        generateAchievement(1, "two", "two"),
+        generateAchievement(2, "three", "three"),
+        generateAchievement(3, "four", "four"),
+        generateAchievement(4, "five", "five"),
+        generateAchievement(5, "six", "six"),
+        generateAchievement(6, "seven", "seven"),
+        generateAchievement(7, "eight", "eight"),
+        generateAchievement(8, "nine", "nine"),
+        generateAchievement(9, "ten", "ten"),
+        generateAchievement(10, "eleven", "eleven")
     )
     fun setDrawable(achievementEntity: AchievementEntity, imageView: ImageView) {
         if (achievementEntity.drawableName !== null) {

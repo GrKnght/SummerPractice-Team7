@@ -1,8 +1,11 @@
 package summerpractice.team7.mymemory.db
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import androidx.room.*
 import android.util.Log
+import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.util.AchievementHelper
 
 class DatabaseBuilder {
@@ -20,9 +23,10 @@ class DatabaseBuilder {
     // val tasks: List<Task> = taskDao.getAll()
     // val updatedTasks: List<Task> = taskDao.updateOutdatedStatuses()
 
-    fun initDB(activity: Activity): MyMEMoryDB {
+    fun initDB(activity: Activity, applicationContext: Context): MyMEMoryDB {
         val db = createDBInstance(activity)
         val achievementDao = db.achievementDao()
+        val taskDao = db.tasksDao()
         val userAchievementsCount = achievementDao.count()
         val defaultAchievementsCount = AchievementHelper(achievementDao).defaultAchievementListCount()
         when {
@@ -49,6 +53,17 @@ class DatabaseBuilder {
                 Log.d("DatabaseBuilder.initDB","No achievement migration needed")
             }
         }
+        checkOutdates(db,applicationContext)
         return db
+    }
+    fun checkOutdates(db: MyMEMoryDB, applicationContext: Context) {
+        val list: List<TaskEntity> = db.tasksDao().updateOutdatedStatuses()
+        val alertDialogBuilder = AlertDialog.Builder(applicationContext)
+            .setTitle("Упс!")
+        for (task in list) {
+            alertDialogBuilder.setMessage("Вы провалили задачу ${task.name}!")
+                .show()
+            db.achievementDao().lockRandom()
+        }
     }
 }

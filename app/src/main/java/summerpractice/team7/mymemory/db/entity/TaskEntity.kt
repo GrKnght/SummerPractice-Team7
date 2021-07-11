@@ -11,7 +11,7 @@ data class TaskEntity(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "desc") var description: String?,
-    @ColumnInfo(name = "th") var time_hours: Long? = null,
-    @ColumnInfo(name = "tm") var time_minutes: Long? = null,
+    @ColumnInfo(name = "sd") var start_date: Long? = null,
+    @ColumnInfo(name = "ed") var end_date: Long? = null,
     @ColumnInfo(name = "status") var status: TaskStatus = TaskStatus.NotStarted
 ) : Serializable

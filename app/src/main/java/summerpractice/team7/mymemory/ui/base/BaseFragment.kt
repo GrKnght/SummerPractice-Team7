@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragment : Fragment() {
 
+    abstract val lblDate: Any
     protected abstract val layout: Int
 
     override fun onCreateView(

@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private var startButton: Button? = null
     private var finishButton: Button? = null
 
+
     lateinit var db: MyMEMoryDB
 
 

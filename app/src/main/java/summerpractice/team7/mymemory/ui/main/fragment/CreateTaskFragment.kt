@@ -1,5 +1,6 @@
 package summerpractice.team7.mymemory.ui.main.fragment
 
+import android.app.DatePickerDialog
 import android.icu.util.UniversalTimeScale.toLong
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.model.TaskModel
 import summerpractice.team7.mymemory.ui.base.BaseFragment
 import summerpractice.team7.mymemory.ui.main.MainActivity
+import java.util.*
 
 class CreateTaskFragment : BaseFragment() {
 
@@ -28,6 +30,7 @@ class CreateTaskFragment : BaseFragment() {
 
         return binding?.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,9 +55,56 @@ class CreateTaskFragment : BaseFragment() {
                         )
                         .commit()
                 }
+
             }
         }
     }
-//    java.lang.Long.valueOf(binding?.timeHours.toString())
-//    java.lang.Long.valueOf(binding?.timeMinutes.toString())
+    private fun setUpStartDate() {
+        var result: Long? = null
+        binding?.btnStartTime?.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val dpd = DatePickerDialog(
+                activity,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                    // Display Selected date in textbox
+                    lblDate.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
+
+                },
+                year,
+                month,
+                day
+            )
+
+            dpd.show()
+        }
+    }
+    private fun setUpEndDate() {
+        var result: Long? = null
+        binding?.btnEndTime?.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val dpd = DatePickerDialog(
+                activity,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                    // Display Selected date in textbox
+                    lblDate.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
+
+                },
+                year,
+                month,
+                day
+            )
+
+            dpd.show()
+        }
+    }
 }

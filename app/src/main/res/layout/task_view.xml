@@ -59,6 +59,15 @@
             android:background="@color/white"
             app:srcCompat="@drawable/white_view" />
 
+        <View
+            android:id="@+id/imageView7"
+            android:layout_width="1dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="177dp"
+            android:layout_marginTop="160dp"
+            android:background="@color/white"
+            app:srcCompat="@drawable/white_view" />
+
         <TextView
             android:id="@+id/task_name"
             style="@style/sample_text_style"
@@ -78,7 +87,7 @@
             android:layout_marginTop="165dp"
             android:paddingTop="5dp"
             android:paddingStart="10dp"
-            android:text="Часов"
+            android:text="Начало: "
             android:textColor="#90FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -91,7 +100,7 @@
             android:layout_marginTop="165dp"
             android:paddingTop="5dp"
             android:paddingStart="10dp"
-            android:text="Минут"
+            android:text="Конец: "
             android:textColor="#90FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />

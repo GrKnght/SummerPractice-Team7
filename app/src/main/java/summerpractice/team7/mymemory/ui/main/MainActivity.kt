@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     private var startButton: Button? = null
     private var finishButton: Button? = null
 
-    lateinit var db: MyMEMoryDB
 
+    lateinit var db: MyMEMoryDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

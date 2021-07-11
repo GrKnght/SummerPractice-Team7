@@ -76,7 +76,7 @@ interface TasksDao {
         for (task in notStartedTasks) {
             if (task.start_date !== null) {
                 if (unixTime > task.start_date!!) {
-                    this.updateStatus(task.id, TaskStatus.InProgress)
+                    this.updateStatus(task.id, TaskStatus.InProgress)f
                     updatedTasks.add(this.get(task.id))
                 }
             }

@@ -2,7 +2,6 @@ package summerpractice.team7.mymemory.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -14,8 +13,6 @@ import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.ActivityMainBinding
 import summerpractice.team7.mymemory.db.DatabaseBuilder
 import summerpractice.team7.mymemory.db.MyMEMoryDB
-import summerpractice.team7.mymemory.db.dao.TasksDao
-import summerpractice.team7.mymemory.db.entity.TaskEntity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var db: MyMEMoryDB
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,12 +31,6 @@ class MainActivity : AppCompatActivity() {
         initNavController()
         db = DatabaseBuilder().initDB(this)
 
-        /*Log.d("MainActivity", "${db.tasksDao().count()} заданий")
-        db.tasksDao().add(TaskEntity(0,"Тестовое задание",
-            "Описание",
-            null,null,
-            TasksDao.TaskStatus.NotStarted))
-        Log.d("MainActivity", "${db.tasksDao().count()} заданий")*/
 
         //val myWorker = MyWorker()
 

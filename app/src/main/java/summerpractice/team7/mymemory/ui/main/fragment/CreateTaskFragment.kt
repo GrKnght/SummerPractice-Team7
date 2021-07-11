@@ -20,6 +20,19 @@ import java.util.*
 
 class CreateTaskFragment : BaseFragment() {
 
+    val calendar: Calendar = Calendar.getInstance()
+    val dpd: DatePickerDialog = DatePickerDialog(requireContext(), { _, year, month, day ->
+        calendar.set(Calendar.YEAR, year)
+        calendar.set(Calendar.MONTH, month)
+        calendar.set(Calendar.DAY_OF_MONTH, month)
+        tpd.show()
+    }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+    val tpd: TimePickerDialog = TimePickerDialog(context, { _, hour, minute ->
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+        binding?.btnStartTime?.text = "Начало: ${getTimeInstance().format(calendar.time)}"
+    }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
+
     override val layout: Int = R.layout.fragment_create_task
 
     private var binding: FragmentCreateTaskBinding? = null
@@ -44,8 +57,8 @@ class CreateTaskFragment : BaseFragment() {
                         id = 0,
                         name = binding?.taskNameEt?.text.toString(),
                         description = binding?.taskDescriptionEt?.text.toString(),
-                        time_hours = 2,
-                        time_minutes = 3,
+                        start_date = System.currentTimeMillis() / 1000L,
+                        end_date = calendar.timeInMillis / 1000L
                         status = TasksDao.TaskStatus.InProgress
                     )
                     // TODO Сохранять таск в БД
@@ -61,34 +74,8 @@ class CreateTaskFragment : BaseFragment() {
 
             }
         }
-        setUpStartDate()
-    }
-    private fun setUpStartDate() {
-        var result: Long? = null
         binding?.btnStartTime?.setOnClickListener {
-            val cal = Calendar.getInstance()
-            val year = cal.get(Calendar.YEAR)
-            val month = cal.get(Calendar.MONTH)
-            val day = cal.get(Calendar.DAY_OF_MONTH)
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                cal.set(Calendar.HOUR_OF_DAY, hour)
-                cal.set(Calendar.MINUTE, minute)
-                binding?.btnStartTime?.text = "Начало: ${getTimeInstance().format(cal.time)}"
-            }
-            val tpd = TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-
-            /*val dpd = DatePickerDialog(
-                activity,
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-                    // Display Selected date in textbox
-                    lblDate.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
-
-                },
-                year,
-                month,
-                day
-            )*/
+            dpd.show()
         }
     }
     private fun setUpEndDate() {

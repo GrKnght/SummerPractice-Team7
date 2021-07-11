@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import summerpractice.team7.mymemory.MyWorker
 import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.ActivityMainBinding
 import summerpractice.team7.mymemory.db.DatabaseBuilder
@@ -26,11 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        db = DatabaseBuilder().initDB(this,applicationContext)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         initNavController()
-        db = DatabaseBuilder().initDB(this)
-
 
         //val myWorker = MyWorker()
 

@@ -15,14 +15,20 @@ class AchievementHelper(val achievementsDao: AchievementsDao) {
     fun getUnlocked(): List<AchievementEntity> {
         return achievementsDao.getAllUnlocked()
     }
+    fun count(): Int {
+        return achievementsDao.count()
+    }
+    fun defaultAchievementListCount(): Int {
+        return achievementList.count()
+    }
     fun initializeDB() {
-        achievementsDao.addMultiple(achievementList)
+        achievementsDao.addMultiple(*achievementList)
     }
     private fun generateAchievement(id: Int, name: String, drawableName: String?): AchievementEntity {
         return AchievementEntity(id, name, drawableName)
         //return AchievementEntity(id = id, name = name, drawableName = drawableName)
     }
-    private val achievementList: ArrayList<AchievementEntity> = arrayListOf(
+    private val achievementList: Array<AchievementEntity> = arrayOf(
         generateAchievement(0,"RarePepe","all_tasks_icon"),
         // Just to test not found icon
         generateAchievement(999,"Unknown", null)

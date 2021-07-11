@@ -41,6 +41,12 @@ interface TasksDao {
     @Update
     fun update(task: TaskEntity)
 
+    @Query("SELECT COUNT(1) FROM tasks")
+    fun count(): Int
+
+    @Query("SELECT id FROM tasks ORDER BY id DESC LIMIT 1")
+    fun lastId(): Int
+
     @Update
     fun updateMultiple(vararg tasks: TaskEntity)
 
@@ -60,7 +66,7 @@ interface TasksDao {
         val inProgressTasks: List<TaskEntity> = this.getTasksWithStatus(TaskStatus.InProgress)
         for (task in inProgressTasks) {
             if (task.end_date !== null) {
-                if (unixTime > task.end_date) {
+                if (unixTime > task.end_date!!) {
                     this.updateStatus(task.id, TaskStatus.Failed)
                     updatedTasks.add(this.get(task.id))
                 }
@@ -69,7 +75,7 @@ interface TasksDao {
         val notStartedTasks: List<TaskEntity> = this.getTasksWithStatus(TaskStatus.NotStarted)
         for (task in notStartedTasks) {
             if (task.start_date !== null) {
-                if (unixTime > task.start_date) {
+                if (unixTime > task.start_date!!) {
                     this.updateStatus(task.id, TaskStatus.InProgress)
                     updatedTasks.add(this.get(task.id))
                 }

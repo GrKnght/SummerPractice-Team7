@@ -22,7 +22,7 @@ interface AchievementsDao {
     fun getAllUnlocked(): List<AchievementEntity>
 
     @Insert
-    fun addMultiple(vararg achievements: ArrayList<AchievementEntity>)
+    fun addMultiple(vararg achievements: AchievementEntity)
 
     @Insert
     fun add(task: AchievementEntity)
@@ -30,14 +30,20 @@ interface AchievementsDao {
     @Update
     fun update(task: AchievementEntity)
 
+    @Query("SELECT COUNT(1) FROM achievements")
+    fun count(): Int
+
     @Update
     fun updateMultiple(vararg achievements: AchievementEntity)
 
-    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RAND() LIMIT 1")
+    @Query("SELECT * FROM achievements WHERE (time != null) ORDER BY RANDOM() LIMIT 1")
     fun getRandomUnlocked(): AchievementEntity
 
-    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RAND() LIMIT 1")
+    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RANDOM() LIMIT 1")
     fun getRandomLocked(): AchievementEntity
+
+    @Query("DELETE FROM achievements")
+    fun destroyTable()
 
     @Transaction
     fun unlockRandom(): AchievementEntity {
@@ -63,7 +69,7 @@ interface AchievementsDao {
     fun lockById(id: Int)
 
     @Query("UPDATE achievements SET time=:unlockedAt WHERE (id=:id)")
-    fun unlockById(id: Int, unlockedAt: Long = (System.currentTimeMillis() / 1000L))
+    fun unlockById(id: Int, unlockedAt: Long? = (System.currentTimeMillis() / 1000L))
 
     @Delete
     fun delete(task: AchievementEntity)

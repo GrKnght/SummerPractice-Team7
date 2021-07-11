@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import summerpractice.team7.mymemory.databinding.FragmentAchievementBinding
 import summerpractice.team7.mymemory.ui.adapter.AchievementAdapter
 import summerpractice.team7.mymemory.ui.main.MainActivity
+import java.text.DateFormat
+import java.util.*
 
 class AchievementFragment : Fragment() {
 
@@ -48,7 +50,10 @@ class AchievementFragment : Fragment() {
 
     private fun initClickListener() {
         adapter?.clickListener = {
-            Toast.makeText(requireContext(), "Открыто достижение ${it.name}", Toast.LENGTH_SHORT)
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.timeInMillis = it.unlockedAt * 1000
+            Toast.makeText(requireContext(), "${it.name} (разблокировано в ${
+                DateFormat.getTimeInstance().format(calendar.time)})", Toast.LENGTH_SHORT)
                 .show()
         }
     }

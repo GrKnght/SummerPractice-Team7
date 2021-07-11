@@ -1,6 +1,5 @@
 package summerpractice.team7.mymemory.ui.main.fragment
 
-import android.icu.util.UniversalTimeScale.toLong
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.FragmentCreateTaskBinding
 import summerpractice.team7.mymemory.db.dao.TasksDao
 import summerpractice.team7.mymemory.db.entity.TaskEntity
-import summerpractice.team7.mymemory.model.TaskModel
 import summerpractice.team7.mymemory.ui.base.BaseFragment
 import summerpractice.team7.mymemory.ui.main.MainActivity
 
@@ -25,7 +23,6 @@ class CreateTaskFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCreateTaskBinding.inflate(inflater, container, false)
-
         return binding?.root
     }
 
@@ -55,6 +52,4 @@ class CreateTaskFragment : BaseFragment() {
             }
         }
     }
-//    java.lang.Long.valueOf(binding?.timeHours.toString())
-//    java.lang.Long.valueOf(binding?.timeMinutes.toString())
 }

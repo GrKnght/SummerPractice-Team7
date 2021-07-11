@@ -1,22 +1,17 @@
 package summerpractice.team7.mymemory.ui.main.fragment
 
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.FragmentAllTaskBinding
 import summerpractice.team7.mymemory.db.dao.TasksDao
-import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.ui.adapter.AllTaskAdapter
 import summerpractice.team7.mymemory.ui.main.MainActivity
-import java.util.function.Predicate
-import java.util.stream.Collector
+
 
 class AllTaskFragment : Fragment() {
 
@@ -49,6 +44,6 @@ class AllTaskFragment : Fragment() {
             if (task.status == TasksDao.TaskStatus.Failed || task.status == TasksDao.TaskStatus.Finished)
                 adapter.addTask(task)
         }
-
     }
+
 }

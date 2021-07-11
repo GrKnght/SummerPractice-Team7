@@ -18,7 +18,7 @@ interface AchievementsDao {
     @Query("SELECT * FROM achievements WHERE (time = null)")
     fun getAllLocked(): List<AchievementEntity>
 
-    @Query("SELECT * FROM achievements WHERE (time != null)")
+    @Query("SELECT * FROM achievements WHERE (time != -1)")
     fun getAllUnlocked(): List<AchievementEntity>
 
     @Insert
@@ -39,7 +39,7 @@ interface AchievementsDao {
     @Query("SELECT * FROM achievements WHERE (time != null) ORDER BY RANDOM() LIMIT 1")
     fun getRandomUnlocked(): AchievementEntity
 
-    @Query("SELECT * FROM achievements WHERE (time = null) ORDER BY RANDOM() LIMIT 1")
+    @Query("SELECT * FROM achievements WHERE (time = -1) ORDER BY RANDOM() LIMIT 1")
     fun getRandomLocked(): AchievementEntity
 
     @Query("DELETE FROM achievements")

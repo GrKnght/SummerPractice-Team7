@@ -63,7 +63,7 @@ interface TasksDao {
         // NotStarted => InProgress by start_date
         val updatedTasks: MutableList<TaskEntity> = mutableListOf()
         val unixTime = System.currentTimeMillis() / 1000L
-        /*val inProgressTasks: List<TaskEntity> = this.getTasksWithStatus(TaskStatus.InProgress)
+        val inProgressTasks: List<TaskEntity> = this.getTasksWithStatus(TaskStatus.InProgress)
         for (task in inProgressTasks) {
             if (task.end_date !== null) {
                 if (unixTime >= task.end_date!!) {
@@ -71,8 +71,8 @@ interface TasksDao {
                     updatedTasks.add(this.get(task.id))
                 }
             }
-        }*/
-        val notStartedTasks: List<TaskEntity> = this.getTasksWithStatus(TaskStatus.NotStarted)
+        }
+        /*val notStartedTasks: List<TaskEntity> = this.getTasksWithStatus(TaskStatus.NotStarted)
         for (task in notStartedTasks) {
             if (task.start_date !== null) {
                 if (unixTime >= task.start_date!!) {
@@ -80,7 +80,7 @@ interface TasksDao {
                     updatedTasks.add(this.get(task.id))
                 }
             }
-        }
+        }*/
         /*
         If updatedTasks array contains InProgress task, then
         this task was NotStarted before,

@@ -10,5 +10,5 @@ data class AchievementEntity(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "path") val drawableName: String?,
     // if null, then not unlocked:
-    @ColumnInfo(name = "time") val unlockedAt: Long? = null
+    @ColumnInfo(name = "time") val unlockedAt: Long = -1L
 )

@@ -7,6 +7,7 @@ import androidx.room.*
 import android.util.Log
 import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.util.AchievementHelper
+import java.lang.StringBuilder
 
 class DatabaseBuilder {
 
@@ -23,47 +24,67 @@ class DatabaseBuilder {
     // val tasks: List<Task> = taskDao.getAll()
     // val updatedTasks: List<Task> = taskDao.updateOutdatedStatuses()
 
-    fun initDB(activity: Activity, applicationContext: Context): MyMEMoryDB {
+    fun initDB(activity: Activity): MyMEMoryDB {
         val db = createDBInstance(activity)
         val achievementDao = db.achievementDao()
         val taskDao = db.tasksDao()
         val userAchievementsCount = achievementDao.count()
-        val defaultAchievementsCount = AchievementHelper(achievementDao).defaultAchievementListCount()
+        val defaultAchievementsCount =
+            AchievementHelper(achievementDao).defaultAchievementListCount()
         when {
             userAchievementsCount == 0 -> {
                 AchievementHelper(achievementDao).initializeDB()
             }
             userAchievementsCount != defaultAchievementsCount -> {
-                Log.d("DatabaseBuilder.initDB","User has different achievements, reinitializing...")
-                Log.d("DatabaseBuilder.initDB","User: $userAchievementsCount | Default: $defaultAchievementsCount")
+                Log.d(
+                    "DatabaseBuilder.initDB",
+                    "User has different achievements, reinitializing..."
+                )
+                Log.d(
+                    "DatabaseBuilder.initDB",
+                    "User: $userAchievementsCount | Default: $defaultAchievementsCount"
+                )
                 val unlockedTasks = AchievementHelper(achievementDao).getUnlocked()
                 achievementDao.destroyTable()
                 AchievementHelper(achievementDao).initializeDB()
                 for (task in unlockedTasks) {
                     try {
                         achievementDao.unlockById(task.id, task.unlockedAt)
-                        Log.d("DatabaseBuilder.initDB","- Migrated task id ${task.id}")
-                    } catch(e: Exception) {
-                        Log.d("DatabaseBuilder.initDB","- Ignored task id ${task.id} (no longed exists)")
+                        Log.d("DatabaseBuilder.initDB", "- Migrated task id ${task.id}")
+                    } catch (e: Exception) {
+                        Log.d(
+                            "DatabaseBuilder.initDB",
+                            "- Ignored task id ${task.id} (no longed exists)"
+                        )
                     }
                 }
-                Log.d("DatabaseBuilder.initDB","Successfully migrated achievements table")
+                Log.d("DatabaseBuilder.initDB", "Successfully migrated achievements table")
             }
             else -> {
-                Log.d("DatabaseBuilder.initDB","No achievement migration needed")
+                Log.d("DatabaseBuilder.initDB", "No achievement migration needed")
             }
         }
-        checkOutdates(db,applicationContext)
+        checkOutDates(db, activity)
         return db
     }
-    fun checkOutdates(db: MyMEMoryDB, applicationContext: Context) {
+
+    private fun checkOutDates(db: MyMEMoryDB, context: Context) {
         val list: List<TaskEntity> = db.tasksDao().updateOutdatedStatuses()
-        val alertDialogBuilder = AlertDialog.Builder(applicationContext)
-            .setTitle("Упс!")
-        for (task in list) {
+        val resultStr = StringBuilder()
+        if (list.isNotEmpty()) {
+            for (task in list) {
+                resultStr.append("Вы провалили задачу ${task.name}!\n")
+                db.achievementDao().lockRandom()
+            }
+            AlertDialog.Builder(context)
+                .setTitle("Упс!")
+                .setMessage(resultStr)
+                .show()
+        }
+        /*for (task in list) {
             alertDialogBuilder.setMessage("Вы провалили задачу ${task.name}!")
                 .show()
             db.achievementDao().lockRandom()
-        }
+        }*/
     }
 }

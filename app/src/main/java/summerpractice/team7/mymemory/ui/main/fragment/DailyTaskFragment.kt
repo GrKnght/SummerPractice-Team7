@@ -20,7 +20,6 @@ class DailyTaskFragment : Fragment() {
     private var binding: FragmentDailyTaskBinding? = null
     private val adapter = TaskAdapter()
 
-
     private fun getTask(): TaskEntity? = arguments?.getSerializable(TASK_TAG) as? TaskEntity
 
     override fun onCreateView(
@@ -34,11 +33,13 @@ class DailyTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initRecyclerView()
     }
 
     private fun loadTasks() {
-        val addes: ArrayList<TaskEntity> = (requireActivity() as MainActivity).db.tasksDao().getAll() as ArrayList<TaskEntity>
+        val addes: ArrayList<TaskEntity> =
+            (requireActivity() as MainActivity).db.tasksDao().getAll() as ArrayList<TaskEntity>
+        if (addes.isNotEmpty())
         for (task in addes) {
             if (task.status == TasksDao.TaskStatus.InProgress || task.status == TasksDao.TaskStatus.NotStarted) {
                 adapter.addTask(task)
@@ -46,13 +47,21 @@ class DailyTaskFragment : Fragment() {
         }
     }
 
-    private fun init() {
+    private fun initRecyclerView() {
         binding?.rectangles?.layoutManager = LinearLayoutManager(requireContext()).apply {
             orientation = RecyclerView.VERTICAL
         }
         binding?.rectangles?.adapter = adapter
         loadTasks()
         val addingTask = binding?.addingTask
+        adapter.changeTimeListener = {
+            // TODO Прописать логику нажатия на изменение времени
+            println("TEST TAG - Изменение времени нажато")
+        }
+        adapter.completeClickListener = { taskEntity ->
+            (requireActivity() as MainActivity)?.finishTask(taskEntity)
+            adapter.removeTask(taskEntity)
+        }
         addingTask?.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragment, CreateTaskFragment())
                 .commit()
@@ -60,7 +69,7 @@ class DailyTaskFragment : Fragment() {
         setupNoTasksNotifications()
     }
 
-    fun setupNoTasksNotifications() {
+    private fun setupNoTasksNotifications() {
         if (arrayListOf(binding?.rectangles).size > 0) {
             binding?.imageView?.visibility = INVISIBLE
             binding?.textView?.visibility = INVISIBLE

@@ -1,23 +1,32 @@
 package summerpractice.team7.mymemory.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import summerpractice.team7.mymemory.databinding.AchievementViewBinding
-import summerpractice.team7.mymemory.databinding.TaskViewBinding
+import summerpractice.team7.mymemory.R
+import summerpractice.team7.mymemory.databinding.ItemAchievementBinding
 import summerpractice.team7.mymemory.db.entity.AchievementEntity
-import summerpractice.team7.mymemory.db.entity.TaskEntity
 
-class AchievementAdapter : RecyclerView.Adapter<AchievementAdapter.AchievementViewHolder>() {
+class AchievementAdapter(private val context: Context) :
+    RecyclerView.Adapter<AchievementAdapter.AchievementViewHolder>() {
 
-    val achievementList = ArrayList<AchievementEntity>()
-    var binding: AchievementViewBinding? = null
+    var achievementList = mutableListOf<AchievementEntity>()
 
-    class AchievementViewHolder(
-        private val binding: AchievementViewBinding
+    var clickListener: ((AchievementEntity) -> Unit)? = null
+
+    inner class AchievementViewHolder(
+        private val binding: ItemAchievementBinding,
+        val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AchievementEntity) = with(binding) {
-
+            achievementIv.setImageDrawable(
+                ContextCompat.getDrawable(context, R.drawable.achievement_icon)
+            )
+            achievementContainer.setOnClickListener {
+                clickListener?.invoke(item)
+            }
         }
     }
 
@@ -28,7 +37,8 @@ class AchievementAdapter : RecyclerView.Adapter<AchievementAdapter.AchievementVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementViewHolder {
         return AchievementViewHolder(
-            AchievementViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemAchievementBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            context
         )
     }
 

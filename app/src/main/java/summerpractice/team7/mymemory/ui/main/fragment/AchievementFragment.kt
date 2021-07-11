@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.FragmentAchievementBinding
 import summerpractice.team7.mymemory.ui.adapter.AchievementAdapter
 import summerpractice.team7.mymemory.ui.main.MainActivity
@@ -15,29 +15,42 @@ import summerpractice.team7.mymemory.ui.main.MainActivity
 class AchievementFragment : Fragment() {
 
     var binding: FragmentAchievementBinding? = null
-    var adapter = AchievementAdapter()
+    var adapter: AchievementAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentAchievementBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initing()
+        adapter = AchievementAdapter(requireContext())
+        initRecyclerView()
+        initClickListener()
     }
 
-    private fun initing() {
-        binding?.achievementRectangles?.layoutManager = LinearLayoutManager(requireContext()).apply {
-            orientation = RecyclerView.VERTICAL
-        }
+    private fun initRecyclerView() {
+        binding?.achievementRectangles?.layoutManager =
+            LinearLayoutManager(requireContext()).apply {
+                orientation = RecyclerView.VERTICAL
+            }
         binding?.achievementRectangles?.adapter = adapter
-        for (achievement in (requireActivity() as MainActivity).db.achievementDao().getAllUnlocked()) {
-            adapter.addAchievement(achievement)
-        }
+        /*for (achievement in (requireActivity() as MainActivity).db.achievementDao().getAllUnlocked()) {
+            adapter?.addAchievement(achievement)
+        }*/
+        val list = (requireActivity() as MainActivity).db.achievementDao().getAllUnlocked()
+        adapter?.achievementList = list.toMutableList()
         setupNoAchievementsIcons()
+    }
+
+    private fun initClickListener() {
+        adapter?.clickListener = {
+            Toast.makeText(requireContext(), "Открыто достижение ${it.name}", Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     private fun setupNoAchievementsIcons() {
@@ -49,6 +62,4 @@ class AchievementFragment : Fragment() {
             binding?.textView?.visibility = View.VISIBLE
         }
     }
-
-
 }

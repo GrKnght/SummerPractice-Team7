@@ -53,7 +53,6 @@
             android:text="Заголовок"
             android:textColor="#90FFFFFF" />
 
-
         <Button
             android:id="@+id/btn_end_time"
             android:layout_width="345dp"

@@ -10,7 +10,9 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     val taskList = ArrayList<TaskEntity>()
 
-    var clickListener: ((taskModel: TaskEntity) -> Unit)? = null
+    var completeClickListener: ((taskModel: TaskEntity) -> Unit)? = null
+
+    var changeTimeListener: ((taskModel: TaskEntity) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder =
         TaskViewHolder(
@@ -33,7 +35,12 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
             aboutTask.text = item.description
             //taskHours.text = item.time_hours.toString()
             //taskMinutes.text = item.time_minutes.toString()
-            clickListener?.invoke(item)
+            btnEndTime.setOnClickListener {
+                changeTimeListener?.invoke(item)
+            }
+            finishTask.setOnClickListener {
+                completeClickListener?.invoke(item)
+            }
         }
     }
 
@@ -43,7 +50,10 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
         notifyItemChanged(taskList.indexOf(taskModel))
     }
 
-    fun removeTask(taskModel: TaskEntity): ArrayList<TaskEntity> {
-        return arrayListOf(taskList.removeAt(taskList.indexOf(taskModel)))
+    fun removeTask(taskModel: TaskEntity) {
+        //return arrayListOf(taskList.removeAt(taskList.indexOf(taskModel)))
+        val index = taskList.indexOf(taskModel)
+        taskList.remove(taskModel)
+        notifyItemChanged(index)
     }
 }

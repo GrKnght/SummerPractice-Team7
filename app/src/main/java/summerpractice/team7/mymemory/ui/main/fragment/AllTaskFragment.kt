@@ -36,6 +36,7 @@ class AllTaskFragment : Fragment() {
         }
         binding?.allTaskRectangles?.adapter = adapter
         loadTasks()
+        setupNoTasksIcons()
     }
 
 
@@ -43,6 +44,15 @@ class AllTaskFragment : Fragment() {
         for (task in (requireActivity() as MainActivity).db.tasksDao().getAll()) {
             if (task.status == TasksDao.TaskStatus.Failed || task.status == TasksDao.TaskStatus.Finished)
                 adapter.addTask(task)
+        }
+    }
+    private fun setupNoTasksIcons() {
+        if ((requireActivity() as MainActivity).db.tasksDao().getAll().isNotEmpty()) {
+            binding?.imageView?.visibility = View.INVISIBLE
+            binding?.textView?.visibility = View.INVISIBLE
+        } else {
+            binding?.imageView?.visibility = View.VISIBLE
+            binding?.textView?.visibility = View.VISIBLE
         }
     }
 

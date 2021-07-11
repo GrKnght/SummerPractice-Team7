@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import summerpractice.team7.mymemory.R
-import summerpractice.team7.mymemory.model.TaskModel
+import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.databinding.FragmentDailyTaskBinding
 import summerpractice.team7.mymemory.ui.adapter.TaskAdapter
+import summerpractice.team7.mymemory.ui.main.MainActivity
 
 class DailyTaskFragment : Fragment() {
 
@@ -19,7 +20,7 @@ class DailyTaskFragment : Fragment() {
     private val adapter = TaskAdapter()
 
 
-    private fun getTask(): TaskModel? = arguments?.getSerializable(TASK_TAG) as? TaskModel
+    private fun getTask(): TaskEntity? = arguments?.getSerializable(TASK_TAG) as? TaskEntity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +45,10 @@ class DailyTaskFragment : Fragment() {
     }
 
     private fun loadTasks() {
-        // TODO Загрузка из БД, передача тасков адаптеру RV
+        var addes: ArrayList<TaskEntity> = (requireActivity() as MainActivity).db.tasksDao().getAll() as ArrayList<TaskEntity>
+        for (task in addes) {
+            adapter.addTask(task)
+        }
     }
 
     private fun init() {
@@ -52,6 +56,7 @@ class DailyTaskFragment : Fragment() {
             orientation = RecyclerView.VERTICAL
         }
         binding?.rectangles?.adapter = adapter
+        loadTasks()
         val addingTask = binding?.addingTask
         addingTask?.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragment, CreateTaskFragment())
@@ -73,7 +78,7 @@ class DailyTaskFragment : Fragment() {
 
         private const val TASK_TAG = "TAG_NEW_TASK"
 
-        fun getInstance(task: TaskModel? = null): DailyTaskFragment {
+        fun getInstance(task: TaskEntity? = null): DailyTaskFragment {
             val fragment = DailyTaskFragment()
             task?.let { task ->
                 fragment.arguments = Bundle().apply {

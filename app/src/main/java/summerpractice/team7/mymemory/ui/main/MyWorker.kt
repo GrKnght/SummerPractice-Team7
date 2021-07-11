@@ -5,9 +5,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import summerpractice.team7.mymemory.db.MyMEMoryDB
 import summerpractice.team7.mymemory.db.dao.TasksDao
-import summerpractice.team7.mymemory.db.dao.AchievementsDao
-
-import summerpractice.team7.mymemory.model.TaskModel
+import summerpractice.team7.mymemory.ui.main.fragment.CreateTaskFragment
 import java.util.*
 
 class MyWorker(context: Context, parameters: WorkerParameters) : Worker(context, parameters) {
@@ -15,6 +13,7 @@ class MyWorker(context: Context, parameters: WorkerParameters) : Worker(context,
     override fun doWork() : Result {
 
         return Result.success()
+
     }
 
     fun onStart(db: MyMEMoryDB) {

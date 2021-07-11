@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.FragmentCreateTaskBinding
+import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.model.TaskModel
 import summerpractice.team7.mymemory.ui.base.BaseFragment
+import summerpractice.team7.mymemory.ui.main.MainActivity
 
 class CreateTaskFragment : BaseFragment() {
 
@@ -27,26 +29,18 @@ class CreateTaskFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task = TaskModel(
-            id = 1,
-            name = "Задание",
-            description = "Описание",
-            startDate = 1L,
-            endDate = 2L,
-            status = 1
-        )
         binding?.let {
             with(it) {
                 saveTaskBtn.setOnClickListener {
-                    var result: TaskModel = TaskModel(
-                        1,
+                    var result: TaskEntity = TaskEntity(
+                        arrayListOf((requireActivity() as MainActivity).db.tasksDao()).size,
                         binding?.taskNameEt?.text.toString(),
                         binding?.taskDescriptionEt?.text.toString(),
                         1010,
                         2020,
-                        1
                     )
                     // TODO Сохранять таск в БД
+                    (requireActivity() as MainActivity).db.tasksDao().add(result)
                     parentFragmentManager.beginTransaction()
                         .replace(
                             R.id.fragment,

@@ -59,7 +59,7 @@ interface TasksDao {
     @Query("DELETE FROM tasks WHERE (id=:id)")
     fun deleteById(id: Int)
 
-    fun updateOutdatedStatuses() : List<TaskEntity> {
+    /*fun updateOutdatedStatuses() : List<TaskEntity> {
         // NotStarted => InProgress by start_date
         val updatedTasks: MutableList<TaskEntity> = mutableListOf()
         val unixTime = System.currentTimeMillis() / 1000L

@@ -21,8 +21,18 @@ class AchievementAdapter(private val context: Context) :
         val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AchievementEntity) = with(binding) {
+            /*achievementIv.setImageDrawable(
+                ContextCompat.getDrawable(context, R.drawable.all_tasks_icon)
+            )*/
             achievementIv.setImageDrawable(
-                ContextCompat.getDrawable(context, R.drawable.achievement_icon)
+                ContextCompat.getDrawable(
+                    context,
+                    context.resources.getIdentifier(
+                        item.drawableName,
+                        "drawable",
+                        context.packageName
+                    )
+                )
             )
             achievementContainer.setOnClickListener {
                 clickListener?.invoke(item)

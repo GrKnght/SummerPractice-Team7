@@ -39,20 +39,12 @@ class AllTaskFragment : Fragment() {
         binding?.allTaskRectangles?.layoutManager = LinearLayoutManager(requireContext()).apply {
             orientation = RecyclerView.VERTICAL
         }
-        (requireActivity() as MainActivity).db.tasksDao().add(
-                TaskEntity(id = (requireActivity() as MainActivity).db.tasksDao().getAll().size,
-                    name ="Проверка",
-                    description = "Списка всех задач",
-                    start_date = 1L,
-                    end_date = 2L,
-                    status = TasksDao.TaskStatus.Finished
-                ))
+        binding?.allTaskRectangles?.adapter = adapter
         loadTasks()
     }
 
 
     private fun loadTasks() {
-        val addes = ArrayList<TaskEntity>()
         for (task in (requireActivity() as MainActivity).db.tasksDao().getAll()) {
             if (task.status == TasksDao.TaskStatus.Failed || task.status == TasksDao.TaskStatus.Finished)
                 adapter.addTask(task)

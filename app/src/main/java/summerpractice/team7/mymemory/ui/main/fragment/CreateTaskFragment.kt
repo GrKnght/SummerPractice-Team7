@@ -1,5 +1,6 @@
 package summerpractice.team7.mymemory.ui.main.fragment
 
+import android.icu.util.UniversalTimeScale.toLong
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,11 +35,11 @@ class CreateTaskFragment : BaseFragment() {
             with(it) {
                 saveTaskBtn.setOnClickListener {
                     var result: TaskEntity = TaskEntity(
-                        id = arrayListOf((requireActivity() as MainActivity).db.tasksDao()).size,
+                        id = 0,
                         name = binding?.taskNameEt?.text.toString(),
                         description = binding?.taskDescriptionEt?.text.toString(),
-                        start_date = 1010,
-                        end_date = 2020,
+                        time_hours = 2,
+                        time_minutes = 3,
                         status = TasksDao.TaskStatus.InProgress
                     )
                     // TODO Сохранять таск в БД
@@ -54,4 +55,6 @@ class CreateTaskFragment : BaseFragment() {
             }
         }
     }
+//    java.lang.Long.valueOf(binding?.timeHours.toString())
+//    java.lang.Long.valueOf(binding?.timeMinutes.toString())
 }

@@ -34,15 +34,8 @@ class DailyTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupNoTasksNotifications()
         init()
-        addTask()
-    }
-
-    private fun addTask() {
-        getTask()?.let { task ->
-            adapter.addTask(task)
-            setupNoTasksNotifications()
-        }
     }
 
     private fun loadTasks() {
@@ -67,7 +60,7 @@ class DailyTaskFragment : Fragment() {
         }
     }
 
-    private fun setupNoTasksNotifications() {
+    fun setupNoTasksNotifications() {
         if (arrayListOf(binding?.rectangles).size != 0) {
             binding?.imageView?.visibility = INVISIBLE
             binding?.textView?.visibility = INVISIBLE

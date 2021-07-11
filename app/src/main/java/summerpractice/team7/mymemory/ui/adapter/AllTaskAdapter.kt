@@ -20,8 +20,8 @@ class AllTaskAdapter : RecyclerView.Adapter<AllTaskAdapter.AllTaskViewHolder>() 
         fun bind(item: TaskEntity) = with(binding) {
             taskName.text = item.name
             aboutTask.text = item.description
-            startOfTime.text = item.start_date.toString()
-            endOfTime.text = item.end_date.toString()
+            taskHours.text = "${taskHours.text}     ${item.time_hours}"
+            taskMinutes.text = "${taskMinutes.text}     ${item.time_minutes}"
         }
     }
 

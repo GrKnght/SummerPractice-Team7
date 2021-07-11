@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.databinding.FragmentDailyTaskBinding
+import summerpractice.team7.mymemory.db.dao.TasksDao
 import summerpractice.team7.mymemory.ui.adapter.TaskAdapter
 import summerpractice.team7.mymemory.ui.main.MainActivity
 
@@ -37,7 +38,7 @@ class DailyTaskFragment : Fragment() {
         addTask()
     }
 
-    fun addTask() {
+    private fun addTask() {
         getTask()?.let { task ->
             adapter.addTask(task)
             setupNoTasksNotifications()
@@ -45,9 +46,11 @@ class DailyTaskFragment : Fragment() {
     }
 
     private fun loadTasks() {
-        var addes: ArrayList<TaskEntity> = (requireActivity() as MainActivity).db.tasksDao().getAll() as ArrayList<TaskEntity>
+        val addes: ArrayList<TaskEntity> = (requireActivity() as MainActivity).db.tasksDao().getAll() as ArrayList<TaskEntity>
         for (task in addes) {
-            adapter.addTask(task)
+            if (task.status == TasksDao.TaskStatus.InProgress || task.status == TasksDao.TaskStatus.NotStarted) {
+                adapter.addTask(task)
+            }
         }
     }
 
@@ -64,7 +67,7 @@ class DailyTaskFragment : Fragment() {
         }
     }
 
-    fun setupNoTasksNotifications() {
+    private fun setupNoTasksNotifications() {
         if (arrayListOf(binding?.rectangles).size != 0) {
             binding?.imageView?.visibility = INVISIBLE
             binding?.textView?.visibility = INVISIBLE

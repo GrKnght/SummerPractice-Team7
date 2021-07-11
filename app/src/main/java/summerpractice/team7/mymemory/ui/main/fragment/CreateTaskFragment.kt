@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import summerpractice.team7.mymemory.R
 import summerpractice.team7.mymemory.databinding.FragmentCreateTaskBinding
+import summerpractice.team7.mymemory.db.dao.TasksDao
 import summerpractice.team7.mymemory.db.entity.TaskEntity
 import summerpractice.team7.mymemory.model.TaskModel
 import summerpractice.team7.mymemory.ui.base.BaseFragment
@@ -33,11 +34,12 @@ class CreateTaskFragment : BaseFragment() {
             with(it) {
                 saveTaskBtn.setOnClickListener {
                     var result: TaskEntity = TaskEntity(
-                        arrayListOf((requireActivity() as MainActivity).db.tasksDao()).size,
-                        binding?.taskNameEt?.text.toString(),
-                        binding?.taskDescriptionEt?.text.toString(),
-                        1010,
-                        2020,
+                        id = arrayListOf((requireActivity() as MainActivity).db.tasksDao()).size,
+                        name = binding?.taskNameEt?.text.toString(),
+                        description = binding?.taskDescriptionEt?.text.toString(),
+                        start_date = 1010,
+                        end_date = 2020,
+                        status = TasksDao.TaskStatus.InProgress
                     )
                     // TODO Сохранять таск в БД
                     (requireActivity() as MainActivity).db.tasksDao().add(result)

@@ -117,7 +117,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
-        android:layout_height="143dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
@@ -138,25 +138,27 @@
         android:textColor="@color/white"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btn_start_time"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Начало"
-        android:textColor="@color/white"/>
+        <Button
+                android:id="@+id/btn_start_time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Указать сроки"
+                android:textColor="@color/white" />
 
-    <Button
-        android:id="@+id/btn_end_time"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Конец"
-        android:textColor="@color/white"/>
+        <Button
+                android:id="@+id/btn_end_time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Конец"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools:visibility="gone" />
 
         <View
             android:layout_width="match_parent"

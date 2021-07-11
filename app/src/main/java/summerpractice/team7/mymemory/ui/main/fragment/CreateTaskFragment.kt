@@ -86,7 +86,7 @@ class CreateTaskFragment : BaseFragment() {
             context, { _, hour, minute ->
                 selectedTime.set(Calendar.HOUR_OF_DAY, hour)
                 selectedTime.set(Calendar.MINUTE, minute)
-                binding?.btnStartTime?.text = "Начало: ${getTimeInstance().format(selectedTime.time)}"
+                binding?.btnStartTime?.text = "Дата окончания: ${getTimeInstance().format(selectedTime.time)}"
             }, selectedTime.get(Calendar.HOUR_OF_DAY),
             selectedTime.get(Calendar.MINUTE), true
         ).show()

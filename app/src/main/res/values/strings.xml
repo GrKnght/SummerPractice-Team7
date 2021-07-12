@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyMEMory</string>
 
-    <string name="bottom_nav_all_task">Список задач</string>
+    <string name="bottom_nav_all_task">В процессе</string>
     <string name="bottom_nav_achievements">Достижения</string>
-    <string name="bottom_nav_completed_tasks">Выполненные задачи</string>
+    <string name="bottom_nav_completed_tasks">Задачи</string>
 </resources>

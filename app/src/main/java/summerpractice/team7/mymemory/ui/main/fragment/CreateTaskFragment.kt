@@ -107,7 +107,6 @@ class CreateTaskFragment : BaseFragment() {
 
                     // Display Selected date in textbox
                     lblDate.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
-
                 },
                 year,
                 month,

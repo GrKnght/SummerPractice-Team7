@@ -21,7 +21,6 @@ class AllTaskAdapter : RecyclerView.Adapter<AllTaskAdapter.AllTaskViewHolder>() 
         fun bind(item: TaskEntity) = with(binding) {
             taskName.text = item.name
             aboutTask.text = item.description
-            btnEndTime.visibility = View.INVISIBLE
             finishTask.visibility = View.INVISIBLE
             //taskHours.text = "${taskHours.text}     ${item.time_hours}"
             //taskMinutes.text = "${taskMinutes.text}     ${item.time_minutes}"

@@ -35,9 +35,9 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
             aboutTask.text = item.description
             //taskHours.text = item.time_hours.toString()
             //taskMinutes.text = item.time_minutes.toString()
-            btnEndTime.setOnClickListener {
+            /*btnEndTime.setOnClickListener {
                 changeTimeListener?.invoke(item)
-            }
+            }*/
             finishTask.setOnClickListener {
                 completeClickListener?.invoke(item)
             }

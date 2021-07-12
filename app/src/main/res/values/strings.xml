@@ -4,4 +4,9 @@
     <string name="bottom_nav_all_task">В процессе</string>
     <string name="bottom_nav_achievements">Достижения</string>
     <string name="bottom_nav_completed_tasks">Задачи</string>
+
+    <string name="title">Заголовок</string>
+    <string name="write_something">Напишите что-нибудь...</string>
+    <string name="finish">Завершить</string>
+
 </resources>

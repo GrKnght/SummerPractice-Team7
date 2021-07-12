@@ -8,164 +8,83 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Добавление задачи"
-        android:textColor="#7A5669"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <!--НАЗВАНИЕ ЗАДАЧИ-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:cardBackgroundColor="#7A5669"
         app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:paddingLeft="90dp"
-            android:paddingTop="5dp"
-            android:text="Название задачи"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="37dp"
-            android:background="@color/white"
-            app:srcCompat="@drawable/white_view"/>
+        app:layout_constraintTop_toBottomOf="@id/horTopGl"
+        app:layout_constraintStart_toStartOf="@id/verLeftGl"
+        app:layout_constraintEnd_toStartOf="@id/verRightGl">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/task_name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="40dp"
             android:hint="Введите название задачи"
+            android:gravity="center"
             android:paddingHorizontal="55dp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
 
     </androidx.cardview.widget.CardView>
 
+
+    <!--ОПИСАНИЕ ЗАДАЧИ-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
         app:cardBackgroundColor="#7A5669"
         app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="@id/cardView">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:paddingLeft="90dp"
-            android:paddingTop="5dp"
-            android:text="Описание задачи"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="37dp"
-            android:background="@color/white"
-            app:srcCompat="@drawable/white_view"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/task_description_et"
-            android:layout_width="345dp"
-            android:layout_height="138dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="40dp"
-            android:lines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="Введите описание задачи"
-            android:paddingHorizontal="55dp"
+            android:lines="4"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="20sp" />
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
+
+    <!--ВРЕМЯ ВЫПОЛНЕНИЯ-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
+
         app:cardBackgroundColor="#7A5669"
         app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/cardView2"
+        app:layout_constraintStart_toStartOf="@id/verLeftGl"
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:paddingLeft="90dp"
-        android:paddingTop="5dp"
-        android:text="Время выполнения"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
 
         <Button
                 android:id="@+id/btn_start_time"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginHorizontal="15dp"
                 android:text="Указать сроки"
                 android:textColor="@color/white" />
 
         <Button
                 android:id="@+id/btn_end_time"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="90dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="--"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:textColor="@color/white"
                 android:visibility="gone" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="37dp"
-            android:background="@color/white"
-            app:srcCompat="@drawable/white_view" />
-
 
     </androidx.cardview.widget.CardView>
 
@@ -173,13 +92,44 @@
         android:id="@+id/save_task_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
         android:background="#BC4C71F4"
         android:text="Добавить задание"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+        app:layout_constraintBottom_toBottomOf="@id/horButtomGl"
+        app:layout_constraintEnd_toEndOf="@id/cardView3"
+        app:layout_constraintStart_toStartOf="@id/cardView3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horTopGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="37dp"></androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horButtomGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verLeftGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.06">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verRightGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.94">
+    </androidx.constraintlayout.widget.Guideline>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

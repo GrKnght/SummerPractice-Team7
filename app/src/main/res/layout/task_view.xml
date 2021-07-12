@@ -3,80 +3,121 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/one_task"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginVertical="4dp"
+    android:layout_height="match_parent"
     android:isScrollContainer="true"
     android:clickable="true"
     android:focusable="true">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/task_card"
-        android:layout_width="365dp"
-        android:layout_height="264dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:cardBackgroundColor="#7A5669"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/about_task"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="30dp"
-            android:text="Напишите что-нибудь..."
-            android:textColor="#90FFFFFF"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="30dp"
-            android:background="@color/white"
-            app:srcCompat="@drawable/white_view" />
+        app:layout_constraintEnd_toEndOf="@id/verRightGl"
+        app:layout_constraintStart_toStartOf="@id/verLeftGl"
+        app:layout_constraintTop_toTopOf="@id/horTopGl">
 
         <TextView
             android:id="@+id/task_name"
             style="@style/sample_text_style"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="Заголовок"
+            android:gravity="center"
             android:textColor="#90FFFFFF" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/about_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#7A5669"
+        app:layout_constraintEnd_toEndOf="@id/verRightGl"
+        app:layout_constraintStart_toStartOf="@id/verLeftGl"
+        android:layout_marginTop="1dp"
+        app:layout_constraintTop_toBottomOf="@id/task_card">
+
+        <TextView
+                android:id="@+id/about_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="4"
+                android:gravity="center"
+                android:text="Напишите что-нибудь..."
+                android:textColor="#90FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/button_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#7A5669"
+        app:layout_constraintEnd_toEndOf="@id/verRightGl"
+        app:layout_constraintStart_toStartOf="@id/verLeftGl"
+        android:layout_marginTop="1dp"
+        app:layout_constraintTop_toBottomOf="@id/about_card">
+
 
         <Button
             android:id="@+id/btn_end_time"
-            android:layout_width="345dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginHorizontal="15dp"
             android:background="@null"
             android:text="Изменить время"
             android:textColor="#90FFFFFF"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/finishTask"
-            android:layout_width="345dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="15dp"
             android:background="@null"
             android:text="Завершить"
             android:textColor="#90FFFFFF"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/horTopGl" />
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horTopGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horButtomGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verLeftGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.06">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verRightGl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.94">
+    </androidx.constraintlayout.widget.Guideline>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
